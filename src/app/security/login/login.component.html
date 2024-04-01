@@ -1,0 +1,30 @@
+
+<div class="mainContent">
+  <div class="formContent">
+    <div class="loginCardWrapper">
+    <h1>Sistema de Información <br/>de la Coordinación de <br/>Investigación y <br/>Desarrollo Tecnológico</h1>
+    <h2>Universidad Autónoma de Guadalajara</h2>
+    <form class="loginForm" [formGroup]="loginFB">
+      <div class="login-row">
+        <i  class="fa fa-user-o icn" aria-hidden="true"></i><input type="text" class="frm-inpt" placeholder="Usuario" id="email" formControlName="email" />
+        <mat-hint *ngIf="$fb['email'].errors"><span *ngIf="$fb['email'].errors.required">Requerido</span><span *ngIf="$fb['email'].errors.email">Valor inválido</span></mat-hint>
+      </div>
+      <div class="login-row">
+        <i style="display: inline;" class="fa fa-unlock-alt icn pwd" aria-hidden="true"></i>
+        <input [type]="fieldTextType ? 'text' : 'password'" class="frm-inpt" placeholder="Contraseña" id="password" formControlName="password" />
+        <i class="fa icn" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+        <mat-hint *ngIf="$fb['password'].errors"><span *ngIf="$fb['password'].errors.required">Requerido</span></mat-hint>
+      </div>
+      <div class="loginBtnWrapper">
+        <button class="loginBtn" [disabled]="loginFB.invalid" (click)="login()">Ingresar</button>
+      </div>
+    </form><!-- form -->
+    <div class="technicalSupportSection">
+      <p>Problemas técnicos: investigacion@edu.uag.mx</p>
+      <p>Extensión 35811</p>
+    </div>
+    </div>
+  </div><!-- content -->
+</div><!-- container -->
+
+  

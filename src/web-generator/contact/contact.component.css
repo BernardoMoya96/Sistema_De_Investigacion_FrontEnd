@@ -1,0 +1,48 @@
+h1 {
+    color:#7d211a;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.contact {
+    width: 90%;
+}
+
+.container {
+    max-width: 90%;
+}
+
+.contact-content {
+    max-width: 90%;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    width: 50%;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    width: 10vw;
+    background-color: #f59700;
+    color:white;
+    border: none;
+    font-weight: bolder;
+}
+
+.btn-primary:hover {
+    background-color: #7d211a;
+    color:white;
+}
+
+span {
+    color:red;
+}
+
+textarea {
+    border-radius: 10px;
+    border: 1px solid #cdc7c2;
+}

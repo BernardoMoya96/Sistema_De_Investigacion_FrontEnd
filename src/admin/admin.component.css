@@ -1,0 +1,18 @@
+
+.btn-primary {
+  background-color: #f59700;
+  border-color: #f59700;
+  color:black;
+  border-radius: 25px;
+  width: 300px;
+}
+
+.btn-primary:hover {
+  color:white;
+  background-color: #5a1510;
+  border-color: #5a1510;
+}
+
+.titleDiv{
+  padding-top: 25px;
+}

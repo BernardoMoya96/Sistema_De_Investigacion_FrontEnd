@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="titleDiv">            
+      <div class="d-flex justify-content-center">
+        <div class="p-2">
+          <img src="assets/img/estados.png"width="320px" height="150px" />
+        </div>
+        <div class="p-2">
+          <img class="button" src="assets/img/button-agregar-proyecto.png" width="700px" (click)="addProyecto()" />
+          <!-- <button class="btn btn-xs btn-primary" (click)="addProyecto()" ><i style="padding-right: 25px;" class="fa fa-plus-circle" aria-hidden="true"></i>  Agregar nuevo Proyecto de Investigación</button> -->          
+          <br>
+          <div class="text-center">                        
+            <p class="instructions_text">Una vez completada la información, deberá Finalizar Captura de su <br> proyecto de investigación para proceder al registro oficial.</p>
+          </div>          
+        </div>                
+      </div>         
+    </div>    
+    <angular-slickgrid gridId="grid1" 
+      [columnDefinitions]="columnDefinitions1"
+      [gridOptions]="gridOptions1"
+      [dataset]="dataset1" (onAngularGridCreated)="angularGrid2Ready($event)">
+      </angular-slickgrid>           
+  </div>

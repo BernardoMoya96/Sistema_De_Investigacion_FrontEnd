@@ -1,0 +1,55 @@
+  .button:hover {
+      cursor: pointer;
+  }
+
+  #edit:hover{
+    cursor: pointer;
+  }
+
+  #format:hover{
+    cursor: pointer;
+  }
+
+  .instructions_text{
+    font-family: "InfraLight";
+    font-size: 20px;
+  }
+
+.slick-column-name{
+  font-family: "InfraBold";
+  font-size: 16px;
+}
+.slick-cell.l0.r0{
+  
+  font-family: "InfraExtraLight";
+  font-size: 16px;
+  text-transform: uppercase;
+}
+    
+.slick-cell.l1.r1{
+  
+  font-family: "InfraExtraLight";
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.slick-cell.l2.r2{
+  
+  font-family: "InfraBold";
+  font-size: 16px;
+}
+
+
+.slick-cell.l3.r3{
+  
+  font-family: "InfraExtraLight";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.slick-cell.l4.r4{
+  
+  font-family: "InfraExtraLight";
+  font-size: 14px;
+  text-transform: uppercase;
+}

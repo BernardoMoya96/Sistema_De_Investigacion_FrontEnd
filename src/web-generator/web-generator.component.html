@@ -1,0 +1,9 @@
+<div class="container cntwrap" *ngIf="!showError">
+    <ng-container>
+        <h1>{{sectionName | uppercase}}</h1>
+        <div class="content-static" [innerHTML]="content"></div>
+    </ng-container>
+    <ng-container *ngIf="showError">
+        <h1> Página no encontrada </h1>
+    </ng-container>
+</div>

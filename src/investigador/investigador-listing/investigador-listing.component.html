@@ -1,0 +1,462 @@
+<div id="userDetailCard">
+    <div class="container">
+        <form [formGroup]="proyectoForm">
+            <div class="form-group row">
+            </div>
+            <nav class="navbar bg-white sticky-top">
+                <h1 class="title">Registro de Proyecto de Investigación</h1>
+                <h1 class="userName">Usuario: JOSE BERNARDO MOYA IBARRA</h1>
+            </nav>
+            <hr style="width:100%">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="id_proyecto" class="col-sm-3 col-form-label">ID proyecto:</label>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="ID proyecto" class="form-control" id="idProyecto"
+                                    formControlName="idProyecto" />
+                                <mat-hint *ngIf="$fb['idProyecto'].errors"><span
+                                        *ngIf="$fb['idProyecto'].errors.required">* Requerido</span></mat-hint>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="titulo_proyecto" class="col-sm-3 col-form-label">Titulo:</label>
+                            <div class="col-sm-8">
+                                <input type="text" placeholder="Titulo Proyecto" class="form-control" id="titulo"
+                                    formControlName="titulo" />
+                                <mat-hint *ngIf="$fb['titulo'].errors"><span *ngIf="$fb['titulo'].errors.required">*
+                                        Requerido</span></mat-hint>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="fecha_registro" class="col-sm-3 col-form-label">Fecha Registro:</label>
+                            <div class="col-sm-8">
+                                <input type="date" placeholder="Fecha Registro" class="form-control" id="fechaRegistro"
+                                    formControlName="fechaRegistro" />
+                                <mat-hint *ngIf="$fb['fechaRegistro'].errors"><span
+                                        *ngIf="$fb['fechaRegistro'].errors.required">* Requerido</span></mat-hint>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <hr style="width:100%">
+
+            <div class="adscripcion">
+                <h5 class="subtitle">Adscripción</h5>
+                <div class="form-group row">
+                    <label for="decanatoId" class="col-sm-3 col-form-label">Decanato:</label>
+                    <div class="col-sm-8">
+                        <select id="decanatoId" class="form-control" formControlName="decanatoId">
+                            <option value="">Selecciona Decanato</option>
+                            <option *ngFor="let opt of decanatos" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['decanatoId'].errors"><span *ngIf="$fb['decanatoId'].errors.required">*
+                                Requerido</span></mat-hint>
+                    </div>
+                    <label for="facultadId" class="col-sm-3 col-form-label">Facultad:</label>
+                    <div class="col-sm-8">
+                        <select id="facultadId" class="form-control" formControlName="facultadId">
+                            <option value="">Selecciona Facultad</option>
+                            <option *ngFor="let opt of facultades" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['facultadId'].errors"><span *ngIf="$fb['facultadId'].errors.required">*
+                                Requerido</span></mat-hint>
+                    </div>
+                    <label for="departamentoId" class="col-sm-3 col-form-label">Departamento:</label>
+                    <div class="col-sm-8">
+                        <select id="departamentoId" class="form-control" formControlName="departamentoId">
+                            <option value="">Selecciona Departamento</option>
+                            <option *ngFor="let opt of departamentos" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['departamentoId'].errors"><span
+                                *ngIf="$fb['departamentoId'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+            </div>
+            <hr style="width:100%">
+            <div class="clasificacion">
+                <h5 class="subtitle">Clasificación</h5>
+                <div class="form-group row">
+                    <label for="campo_conocimiento" class="col-sm-3 col-form-label">Campo del Conocimiento:</label>
+                    <div class="col-sm-8">
+                        <select id="campoConocimientoId" class="form-control" formControlName="campoConocimientoId">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of campoConocimiento" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['campoConocimientoId'].errors"><span
+                                *ngIf="$fb['campoConocimientoId'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="disciplina" class="col-sm-3 col-form-label">Disciplina:</label>
+                    <div class="col-sm-8">
+                        <select id="disciplinaId" class="form-control" formControlName="disciplinaId">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of disciplinas" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['disciplinaId'].errors"><span *ngIf="$fb['disciplinaId'].errors.required">*
+                                Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="subdisciplinas" class="col-sm-3 col-form-label">Subdisciplina:</label>
+                    <div class="col-sm-8">
+                        <select id="subdisciplinaId" class="form-control" formControlName="subdisciplinaId">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of subdisciplinas" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['subdisciplinaId'].errors"><span
+                                *ngIf="$fb['subdisciplinaId'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lineas_investigacion" class="col-sm-3 col-form-label">Líneas de Investigación:</label>
+                    <div class="col-sm-8">
+                        <!-- <select id="lineas_investigacion" class="form-control" formControlName="lineasInvestigacion" >
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="categoria_investigacion" class="col-sm-3 col-form-label">Categoría de
+                        Investigación:</label>
+                    <div class="col-sm-8">
+                        <select id="categoriaInvestigacion" class="form-control"
+                            formControlName="categoriaInvestigacion">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of categoriaInvestigacion" value="{{opt.key}}">{{opt.value}}
+                            </option>
+                        </select>
+                        <mat-hint *ngIf="$fb['categoriaInvestigacion'].errors"><span
+                                *ngIf="$fb['categoriaInvestigacion'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tipo_investigacion" class="col-sm-3 col-form-label">Tipo de Investigación:</label>
+                    <div class="col-sm-8">
+                        <select id="tipo_investigacion" class="form-control" formControlName="tipoInvestigacion">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of tipoInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['tipoInvestigacion'].errors"><span
+                                *ngIf="$fb['tipoInvestigacion'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="grado" class="col-sm-3 col-form-label">Grado:</label>
+                    <div class="col-sm-8">
+                        <select id="grado" class="form-control" formControlName="grado">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of grado" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['grado'].errors"><span *ngIf="$fb['grado'].errors.required">*
+                                Requerido</span></mat-hint>
+                    </div>
+                </div>
+            </div>
+            <hr style="width:100%">
+            <div class="contenido">
+                <h5 class="subtitle">Contenido</h5>
+                <div class="form-group row">
+                    <label for="descripcion" class="col-sm-3 col-form-label">Descripción del Problema:</label>
+                    <div class="col-sm-8">
+                        <textarea id="descripcion" placeholder="Descripción del Problema" class="form-control"
+                            formControlName="descripcion" rows="8" style="min-width: 100%"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="objetivos" class="col-sm-3 col-form-label">Objetivos:</label>
+                    <div class="col-sm-8">
+                        <textarea id="objetivos" placeholder="Objetivos proyecto" class="form-control"
+                            formControlName="objetivos" rows="5" style="min-width: 100%"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="resultados" class="col-sm-3 col-form-label">Resultados:</label>
+                    <div class="col-sm-8">
+                        <textarea id="resultados" placeholder="Resultados" class="form-control"
+                            formControlName="resultados" rows="5" style="min-width: 100%"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fuente_financiamiento" class="col-sm-3 col-form-label">Fuente de financiamiento:
+                    </label>
+                    <div class="col-sm-8">
+                        <!-- <select id="fuente_financiamiento" class="form-control" formControlName="fuente_financiamiento" style="min-width: 100%">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                        </select> -->
+                        <!-- <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="beneficiario" class="col-sm-3 col-form-label">Beneficiario y/o Usuario: </label>
+                    <div class="col-sm-8">
+                        <input id="beneficiario" placeholder="Beneficiario y/o Usuario" class="form-control"
+                            formControlName="beneficiario" rows="5" style="min-width: 100%" />
+                        <mat-hint *ngIf="$fb['beneficiario'].errors"><span *ngIf="$fb['beneficiario'].errors.required">*
+                                Requerido</span></mat-hint>
+                    </div>
+                </div>
+            </div>
+            <div class="participantes">
+                <hr style="width:100%">
+                <div class="form-group row">
+                    <h5 class="subtitle">Participantes:</h5>
+                    <label for="colaboradores" class="col-sm-3 col-form-label">
+                        <h5>Colaboradores:</h5>
+                    </label>
+                    <div class="col-sm-8">
+                        <img class="button" src="assets/img/button-agregar-colaborador.png" width="250px"
+                            (click)="open(colaboradormodal)" />
+                    </div>
+                    <div class="col-md-8 mt-4">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Nómina:</th>
+                                    <th style="width:40%">Nombre:</th>
+                                    <th style="width:30%">Participación:</th>
+                                    <th style="width:10%">Horas:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listData">
+                                    <td style="width:10%"><span>{{item.nomina}}</span></td>
+                                    <td style="width:40%"><span>{{item.nombre}}</span></td>
+                                    <td style="width:30%"><input type="text" class="form-control form-control-sm"
+                                            style="width:100%"><span></span></td>
+                                    <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                                style="width:100%"></span></td>
+                                    <td><button type="button" class="btn btn-primary"
+                                            (click)="removeItem(item)">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="alumnos" class="col-sm-3 col-form-label">
+                        <h5>Alumnos:</h5>
+                    </label>
+                    <div class="col-sm-8">
+                        <img class="button" src="assets/img/button-agregar-alumno.png" width="200px"
+                            (click)="open(alumnomodal)" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="externos-uag" class="col-sm-3 col-form-label">
+                        <h5>Externos UAG:</h5>
+                    </label>
+                    <div class="col-sm-8">
+                        <button class="btn btn-xs btn-primary" (click)="open(externomodal)"><i
+                                style="padding-right: 25px;" class="fa fa-plus-circle" aria-hidden="true"></i>Agregar
+                            externos UAG</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cronograma">
+                <hr style="width:100%">
+                <h5 class="subtitle">Cronograma:</h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="fecha_inicio" class="col-sm-3 col-form-label">Fecha Inicio:</label>
+                                <div class="col-sm-8">
+                                    <input type="date" placeholder="Fecha Inicio" class="form-control" id="fechaInicio"
+                                        formControlName="fechaInicio" />
+                                    <mat-hint *ngIf="$fb['fechaInicio'].errors"><span
+                                            *ngIf="$fb['fechaInicio'].errors.required">* Requerido</span></mat-hint>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="titulo_proyecto" class="col-sm-3 col-form-label">Fecha de Término:</label>
+                                <div class="col-sm-8">
+                                    <input type="date" placeholder="Fecha de término" class="form-control"
+                                        id="fecha_termino" formControlName="fechaTermino" />
+                                    <mat-hint *ngIf="$fb['fechaTermino'].errors"><span
+                                            *ngIf="$fb['fechaTermino'].errors.required">* Requerido</span></mat-hint>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="duracion_estimada" class="col-sm-3 col-form-label">Duración
+                                    Estimada:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="Duración estimada" class="form-control"
+                                        id="duracionEstimada" formControlName="duracionEstimada" />
+                                    <mat-hint *ngIf="$fb['duracionEstimada'].errors"><span
+                                            *ngIf="$fb['duracionEstimada'].errors.required">*
+                                            Requerido</span></mat-hint>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="estadoLookupEstadoCodigo" class="col-sm-3 col-form-label">Estatus:</label>
+                                <div class="col-sm-8">
+                                    <select id="estadoLookupEstadoCodigo" class="form-control"
+                                        formControlName="estadoLookup">
+                                        <option value="">SELECCIONE UNA OPCIÓN...</option>
+                                        <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}
+                                        </option>
+                                    </select>
+                                    <mat-hint *ngIf="$fb['estadoLookup'].errors"><span
+                                            *ngIf="$fb['estadoLookup'].errors.required">* Requerido</span></mat-hint>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="publicacion">
+                <hr style="width:100%">
+                <h5 class="subtitle">Publicación:</h5>
+                <div class="d-flex flex-row">
+                    <div class="p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Sí
+                            </label>
+                        </div>
+                    </div>
+                    <div class="p-2 col-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <label for="estadoLookupEstadoCodigo" class="col">Producto Generado:</label>
+                    </div>
+                    <div class="p-2">
+                        <div class="col-sm-8">
+                            <!-- <select id="estadoLookupEstadoCodigo" class="form-control" formControlName="estadoLookupEstadoCodigo" >
+                                <option value="">SELECCIONE UNA OPCIÓN...</option>
+                                <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                            </select>
+                            <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lineas_de_investigacion">
+                <hr style="width:100%">
+                <h5 class="subtitle text-center">Lineas de Investigación:</h5>
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <div>
+                        <div class="col-sm-8">
+                            <!-- <select id="estadoLookupEstadoCodigo" class="form-control" formControlName="estadoLookupEstadoCodigo" >
+                                <option value="">SELECCIONE UNA OPCIÓN...</option>
+                                <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                            </select>
+                            <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="guardar_registrar">
+                <hr style="width:100%">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-2">
+                            <img class="button" src="assets/img/button-guardar.png" width="200px" (click)="addUser()" />
+                        </div>
+                        <div class="col-md-auto">
+                        </div>
+                        <div class="col col-lg-2">
+                            <img class="button" src="assets/img/button-registrar.png" width="200px" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="card">
+            </div>
+        </form>
+    </div>
+    <ng-template #colaboradormodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="participantes" />
+                <datalist id="user_id" formControlName="userId">
+                    <option *ngFor="let opt of investigadores"
+                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
+                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
+                </datalist>
+                <button type="submit" class="btn btn-primary">Insertar usuario</button>
+            </form>
+        </div>
+    </ng-template>
+    <ng-template #alumnomodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="participantes" />
+                <datalist id="user_id" formControlName="userId">
+                    <option *ngFor="let opt of alumnos"
+                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
+                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
+                </datalist>
+                <button type="submit" class="btn btn-primary">Insertar usuario</button>
+            </form>
+        </div>
+    </ng-template>
+    <ng-template #externomodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="participantes" />
+                <datalist id="user_id" formControlName="userId">
+                    <option *ngFor="let opt of externos"
+                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
+                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
+                </datalist>
+                <button type="submit" class="btn btn-primary">Insertar usuario</button>
+            </form>
+        </div>
+    </ng-template>
+</div>

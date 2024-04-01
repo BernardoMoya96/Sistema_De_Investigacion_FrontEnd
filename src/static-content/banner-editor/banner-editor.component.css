@@ -1,0 +1,16 @@
+.btn-primary {
+    margin-top: 10px;
+    width: 10em;
+    background-color: #f59700;
+    color:black;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #7d211a;
+    color:white;
+}
+
+.large-input {
+    width: 500px!important;
+}

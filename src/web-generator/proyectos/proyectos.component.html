@@ -1,0 +1,24 @@
+<div class="container cntwrap">
+    <ng-container>
+        <h1>PROYECTOS</h1>
+        <div class="content-static" [innerHTML]="content"></div>
+        <div id="proyectos" class="row">
+            <ng-container *ngFor="let proyecto of proyectos">
+                <div class="col-md-{{12 / colSize}}">
+                    <img [src]="proyecto.img" width="{{screenWidth / colSize}}"/><br/>
+                    <h3>{{proyecto.nombre}}</h3>
+                    <p>{{proyecto.resumen}}</p>
+                </div>
+            </ng-container>
+        </div>
+        <div id="paginator">
+            <ngb-pagination 
+                (pageChange)="loadPage($event)" 
+                [collectionSize]="totalPages" 
+                [pageSize]="colSize"
+                [(page)]="currentPage" 
+                [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+    </ng-container>
+</div>

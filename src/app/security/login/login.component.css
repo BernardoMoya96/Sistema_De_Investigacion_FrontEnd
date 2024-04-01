@@ -1,0 +1,163 @@
+
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  background-color: #5a1510;
+}
+
+.loginCardWrapper {
+  position:relative;
+  background-color: #5a1510!important;
+  z-index: 999;
+}
+
+.mainContent {
+  float: left;
+  display:flex;
+  width: 100%;
+  background-image: url('../../../assets/img/login-img.jpg');
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 75% 100%;
+  background-color: #5a1510;
+  z-index: 1;
+}
+
+
+input[type='button']:disabled {
+    background-color: grey!important;
+    color:black!important;
+}
+
+/deep/.mat-hint {
+    color: #f59700 !important;
+    font-size: .7vw !important;
+}
+
+.formContent {
+  position:absolute;
+  right:0px;
+  width: 50%;
+  background-color: #5a1510!important;
+  height: 100%;
+  z-index: 2;
+}
+
+.loginForm {
+  margin: 0 auto;
+  width: 50%;
+}
+
+h1 {
+  color:white;
+  /*font-size: 48px;*/
+  font-size: 2.3vw;
+  font-weight: bolder;
+  text-align: left;
+  /*padding-left: 1em;
+  padding-top: 2em;*/
+  padding-left: 2vw;
+  padding-top: 4vw;
+  font-family: sans-serif;
+}
+
+
+h2 {
+  color:white;
+  text-align:center;
+  /*font-size: 36px;*/
+  font-size: 2.0vw;
+  font-weight: 400;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.technicalSupportSection {
+  margin-top: 2vw;
+  color: white;
+  text-align: center;
+  /*font-size:25px;*/
+  font-size: 1.2vw;
+  font-weight: 200;
+}
+
+.loginBtnWrapper {
+  width: 50%;
+  margin: 0 auto;
+  padding-top:30px;
+}
+
+.loginBtn {
+  width: 250px;
+  background-color: #f59700;
+  height: 50px;
+  border-color: #f59700;
+  border-radius: 25px;
+  color:#5a1510;
+  font-size: 28px;
+}
+
+.loginBtn:hover{
+  background-color: #ffc76e;
+  border: 1px solid white;
+  cursor:pointer;
+}
+
+
+.frm-inpt {
+  display: inline;
+  background-color: #5a1510;
+  color:white;
+  /*width: 300px;*/
+  width: 16vw;
+  /*height: 50px;*/
+  height: 3vw;
+  /*font-size:28px;*/
+  font-size:1.3vw;
+  outline: 0;
+  border:none;
+  /*border-width: 0 0 2px;
+  border-color: white;*/
+  padding-left: 10px;
+  padding-top:20px;
+}
+
+/*.frm-inpt:focus {
+  border-color: #ffc76e;
+}*/
+
+.icn {
+  color:white;
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+#email {
+  /*width: 345px;*/
+  width: 18.5vw;
+}
+
+.pwd {
+  padding-right: 5px;
+}
+
+.login-row {
+  border-bottom: 1px solid white;
+}
