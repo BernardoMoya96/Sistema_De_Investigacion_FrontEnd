@@ -1,0 +1,114 @@
+<div id="userDetailCard">
+    <div class="container">
+        <form [formGroup]="userFB">
+            <h1 class="title"><span *ngIf="mode == 'add'">Añadir</span><span *ngIf="mode == 'update'">Actualizar</span> Usuario </h1>
+            <div class="form-group row">
+                <label for="id" class="col-sm-3 col-form-label">ID:</label>
+                <div class="col-sm-8">
+                    <input [readonly]="mode != 'add'" type="text" class="form-control" placeholder="Matrícula o nómina" id="id" formControlName="id" />
+                    <mat-hint *ngIf="$fb['id'].errors"><span *ngIf="$fb['id'].errors.required">* Requerido</span></mat-hint>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="prefijo" class="col-sm-3 col-form-label">Prefijo:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ej. Dr." max="9" id="prefijo" formControlName="prefijo" />
+                    <mat-hint *ngIf="$fb['prefijo'].errors"><span *ngIf="$fb['prefijo'].errors.required">* Requerido</span></mat-hint>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nombres" class="col-sm-3 col-form-label">Nombres:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Nombres" id="nombres" formControlName="nombres" />
+                  
+                    <mat-hint *ngIf="$fb['nombres'].errors"><span *ngIf="$fb['nombres'].errors.required">* Requerido</span></mat-hint>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apellidoPaterno" class="col-sm-3 col-form-label">Apellido Paterno:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Apellido Paterno" id="apellidoPaterno" formControlName="apellidoPaterno" />
+                    
+                    <mat-hint *ngIf="$fb['apellidoPaterno'].errors"><span *ngIf="$fb['apellidoPaterno'].errors.required">* Requerido</span></mat-hint>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="apellidoMaterno" class="col-sm-3 col-form-label">Apellido Materno:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Apellido Materno" id="apellidoMaterno" formControlName="apellidoMaterno" />
+                   
+                    <mat-hint *ngIf="$fb['apellidoMaterno'].errors"><span *ngIf="$fb['apellidoMaterno'].errors.required">* Requerido</span></mat-hint>
+                </div>  
+            </div>
+            <div class="form-group row">
+                <label for="decanatoId" class="col-sm-3 col-form-label">Tipo de Usuario:</label>
+                <div class="col-sm-8">
+                    <mat-select multiple id="roles" formControlName="roles">
+                        <mat-option *ngFor="let opt of tiposUsuario" [value]="opt.key">{{opt.value}}</mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="$fb['roles'].errors"><span *ngIf="$fb['roles'].errors.required">* Requerido</span></mat-hint>
+                </div> 
+            </div>
+            <div class="form-group row">  
+                <label for="decanatoId" class="col-sm-3 col-form-label">Decanato:</label>
+                <div class="col-sm-8">
+                    <select id="decanatoId" class="form-control" formControlName="decanatoId" >
+                        <option value="">Selecciona Decanato</option>
+                        <option *ngFor="let opt of decanatos" value="{{opt.key}}">{{opt.value}}</option>
+                    </select>
+                    <mat-hint *ngIf="$fb['decanatoId'].errors"><span *ngIf="$fb['decanatoId'].errors.required">* Requerido</span></mat-hint>
+                </div>
+                <label for="facultadId" class="col-sm-3 col-form-label">Facultad:</label>
+                <div class="col-sm-8">
+                    <select id="facultadId" class="form-control" formControlName="facultadId">
+                        <option value="">Selecciona Facultad</option>
+                        <option *ngFor="let opt of facultades" value="{{opt.key}}">{{opt.value}}</option>
+                    </select>
+                    <mat-hint *ngIf="$fb['facultadId'].errors"><span *ngIf="$fb['facultadId'].errors.required">* Requerido</span></mat-hint>
+                </div>
+                <label for="departamentoId" class="col-sm-3 col-form-label">Departamento:</label>
+                <div class="col-sm-8">
+                    <select id="departamentoId" class="form-control" formControlName="departamentoId">
+                        <option value="">Selecciona Departamento</option>
+                        <option *ngFor="let opt of departamentos" value="{{opt.key}}">{{opt.value}}</option>
+                    </select>
+                    <mat-hint *ngIf="$fb['departamentoId'].errors"><span *ngIf="$fb['departamentoId'].errors.required">* Requerido</span></mat-hint>
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <label for="img" class="col-sm-3 col-form-label">Foto:</label>
+                <div class="col-sm-8">
+                    <input type="file" class="form-control" id="img" (change)="handleFileChange($event)" />
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">Email:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Email" id="email" formControlName="email" />
+                <mat-hint *ngIf="$fb['email'].errors"><span *ngIf="$fb['email'].errors.required">* Requerido</span><span *ngIf="$fb['email'].errors.email">Valor inválido</span></mat-hint>
+              </div>
+              <label for="password" class="col-sm-3 col-form-label">Password:</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" placeholder="Password" id="password" formControlName="password" />
+                <mat-hint *ngIf="$fb['password'].errors"><span *ngIf="$fb['password'].errors.required">* Requerido</span></mat-hint>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="comentarios" class="col-sm-3 col-form-label">Breve autodescripción:</label>
+                <div class="col-sm-8">
+                    <textarea id="comentarios" class="form-control" placeholder="Auto descripción" class="form-control" formControlName="comentarios"  ></textarea>
+                </div>
+                <label for="ubicacion" class="col-sm-3 col-form-label">Ubicacion:</label>
+                <div class="col-sm-8">
+                    <textarea id="ubicacion" placeholder="Ubicacion" class="form-control" formControlName="ubicacion"  ></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <br/>
+                <div class="col-sm-3"></div>
+                <button style="float: right; max-width: 400px; margin-top: 25px;" class="btn btn-primary btn-xs" (click)="submitForm()"><i style="padding-right: 25px;" class="fa fa-paper-plane" aria-hidden="true"></i> Enviar</button>
+            </div>
+          </form><!-- form -->
+    </div>
+</div>

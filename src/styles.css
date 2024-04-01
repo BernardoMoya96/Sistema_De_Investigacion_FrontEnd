@@ -1,1 +1,106 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face{
+    font-family: "InfraExtraBold";
+    src: local("InfraExtraBold"), url(./assets/fonts/InfraExtraBold.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraBlack";
+    src: local("InfraBlack"), url(./assets/fonts/InfraBlack.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraBlackItalic";
+    src: local("InfraBlackItalic"), url(./assets/fonts/InfraBlackItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraBold";
+    src: local("InfraBold"), url(./assets/fonts/InfraBold.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraBoldItalic";
+    src: local("InfraBoldItalic"), url(./assets/fonts/InfraBoldItalic.otf) format("truetype");
+}
+
+
+@font-face{
+    font-family: "InfraExtraBoldItalic";
+    src: local("InfraExtraBoldItalic"), url(./assets/fonts/InfraExtraBoldItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraExtraLight";
+    src: local("InfraExtraLight"), url(./assets/fonts/InfraExtraLight.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraExtraLightItalic";
+    src: local("InfraExtraLightItalic"), url(./assets/fonts/InfraExtraLightItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraHairline";
+    src: local("InfraHairline"), url(./assets/fonts/InfraHairline.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraHairlineItalic";
+    src: local("InfraHairlineItalic"), url(./assets/fonts/InfraHairlineItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraLight";
+    src: local("InfraLight"), url(./assets/fonts/InfraLight.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraLightItalic";
+    src: local("InfraLightItalic"), url(./assets/fonts/InfraLightItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraMedium";
+    src: local("InfraMedium"), url(./assets/fonts/InfraMedium.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraMediumItalic";
+    src: local("InfraMediumItalic"), url(./assets/fonts/InfraMediumItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraRegular";
+    src: local("InfraRegular"), url(./assets/fonts/InfraRegular.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraRegularItalic";
+    src: local("InfraRegularItalic"), url(./assets/fonts/InfraRegularItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraSemiBold";
+    src: local("InfraSemiBold"), url(./assets/fonts/InfraSemiBold.otf) format("truetype");
+}
+
+
+@font-face{
+    font-family: "InfraSemiBoldItalic";
+    src: local("InfraSemiBoldItalic"), url(./assets/fonts/InfraSemiBoldItalic.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraThin";
+    src: local("InfraThin"), url(./assets/fonts/InfraThin.otf) format("truetype");
+}
+
+@font-face{
+    font-family: "InfraThinItalic";
+    src: local("InfraThinItalic"), url(./assets/fonts/InfraThinItalic.otf) format("truetype");
+}

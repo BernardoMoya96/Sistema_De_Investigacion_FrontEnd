@@ -1,0 +1,104 @@
+#userDetailCard { 
+  /*width: 100%;
+  min-height: 900px;
+  position: relative;
+  border: 3px solid rgb(128, 36, 0); */
+  background-color: white;
+}
+
+
+  #userDetailCard .content {
+   /* width: 65%;
+    height: auto; 
+  position: absolute;
+  top: 1%;
+  left: 20%;
+  margin: -10px 0 0 -25px;*/
+    background-color: whitesmoke;
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 1%;
+    /*border: 2px solid #eea236;
+    border-radius: 25px;*/
+  }
+
+  .title {
+      color:#5a1510;
+      font-weight: 500;      
+      margin-top: 0px;
+      font-size: 30px;
+  }
+
+  .userName{
+    color:#5a1510;
+    font-weight: 500;      
+    margin-top: 0px;
+    font-size: 30px;
+  }
+
+  .btn-primary {
+    background-color: #eea236!important;
+    border:none!important;
+    color:black;
+  }
+
+  .btn-primary:hover {
+    background-color: #5a1510!important;
+    color:white;
+  }
+
+  .mat-hint {
+      font-size:12px!important;
+      color:crimson!important;
+      margin-left:5px;
+  }
+
+  .form-control {
+    display: unset!important;
+    width: 20em;
+  }
+
+ .mat-select-trigger{
+    width:20em!important;  
+    height: 2em;
+    margin-top: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+.subtitle{
+  color:#5a1510;  
+}
+
+.navbar {
+  display: flex;
+}
+
+.btn-primary {
+  background-color: #f59700;
+  border-color: #f59700;
+  color:black;
+  border-radius: 25px;  
+}
+
+.btn-primary:hover {
+  color:white;
+  background-color: #5a1510;
+  border-color: #5a1510;
+}
+  
+.button:hover {
+  cursor: pointer;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.table{
+  width:150%;
+}
+
+td {
+  border: 1px solid;    
+}

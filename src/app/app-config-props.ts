@@ -6,6 +6,8 @@ export class AppConfig {
     public static COOKIE_KEY : string = "appCurrentUser" ;
 
     public static BASE_URL:string  =  "http://" + AppConfig.HTTP_HOST + ":" + AppConfig.HTTP_PORT + "/" + AppConfig.HTTP_CONTEXT;
-    // web-tesis frontend enpoint
-    public static LOGIN_URL:string = "http://localhost/sistema_investigacion/login";
+
+    public static RESEARCHER_WEB_BASE:string = "http://localhost/web_investigador"
+    public static RESEARCHER_WEB_EDITOR_URL:string = AppConfig.RESEARCHER_WEB_BASE + "/editor";
+    public static RESEARCHER_WEB_URL:string = AppConfig.RESEARCHER_WEB_BASE + "/p";
 }

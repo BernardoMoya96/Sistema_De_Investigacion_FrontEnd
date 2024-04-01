@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { BehaviorSubject } from 'rxjs';
 import { AppConfig } from '../app-config-props';
 import { User } from '../models/User';
 
@@ -9,49 +9,45 @@ import { User } from '../models/User';
 })
 export class SessionService {
 
- 
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public userSession: User | undefined;
   private userToken: string | undefined;
 
-  constructor(private cookieService: CookieService, private http: HttpClient) { }
+  constructor(private cookieService: CookieService) { }
 
-  public getUserToken():String {
-    if (!this.userToken) {
-      var sess = this.getUserSession();
-      this.userToken = sess ? sess.token : undefined;
-    }
-    return this.userToken!;
+  public getUserToken() {
+    return this.userToken;
   }
 
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
 
-  public getUserSession():User {
+  public getUserSession() {
     if (!this.userSession) {
-      var val = this.cookieService.get(AppConfig.COOKIE_KEY);
-      if (val)
-        this.userSession = JSON.parse(val);
+      var value = this.cookieService.get(AppConfig.COOKIE_KEY);
+      if (value) {
+        this.userSession = JSON.parse(value);
+        if (!this.userToken) {
+          this.userToken = this.userSession?.token;
+        }
+      }
     }
-    return this.userSession!;
+    return this.userSession;
   }
 
   public setUser(user: User) {
-    this.cookieService.set(AppConfig.COOKIE_KEY, JSON.stringify(user), 7);
+    this.cookieService.set(AppConfig.COOKIE_KEY, JSON.stringify(user), 7, "/");
     this.userSession = user;
     this.userToken = user.token;
+    this.loggedIn.next(true);
   }
 
   public logout() {
     this.cookieService.delete(AppConfig.COOKIE_KEY);
     this.userSession = undefined;
     this.userToken = undefined;
-    window.location.replace(AppConfig.LOGIN_URL+"?returnUrl=admin");
-  }
-
-  public getUserById(id:number) {
-    return this.http.get(AppConfig.BASE_URL + "/admin/usuario/" + id);
-  }
-
-  public getUserByEmail(email:string) {
-    return this.http.get(AppConfig.BASE_URL + "/admin/usuario/email/" + email);
+    this.loggedIn.next(false);
   }
 }

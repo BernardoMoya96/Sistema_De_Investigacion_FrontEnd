@@ -1,0 +1,18 @@
+.mainContent {
+    text-align: center;
+    padding-top: 5%;
+}
+
+.mainContent h1 {
+    color:#5a1510;
+    font-weight: 400;
+}
+
+.contentWrapper {
+    padding: 5%;
+    margin: 0 auto;
+    max-width: 800px;
+    font-size: 17.3963px;
+    font-family: sans-serif;
+    transform: scaleX(0.84979);
+}
