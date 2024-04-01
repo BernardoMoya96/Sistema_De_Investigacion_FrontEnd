@@ -1,10 +1,14 @@
-# WebTesis
+# WebInvestigador
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.11.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Dependency with web-tesis
+
+This project reuses the login module of web-tesis project. Please checkout web-tesis.git, and start it in different port eg `ng serve --port 4201`, then modify the LOGIN_URL property in app-config-props.ts file to point to web-tesis login module eg. `http://localhost:4201/login`
 
 ## Code scaffolding
 
@@ -33,7 +37,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
     RewriteRule ^(.*) index.html [NC,L]
 </IfModule>
 
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -45,5 +48,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# Sistema_De_Investigacion_FrontEnd
-# Sistema_De_Investigacion_FrontEnd
+
+
+## Renew TinyMCE API KEY
+
+Sometimes when you go any editor and the TinyMCE editor doesn't show up. It is because you need to update API Key in use.
+To update: Get a new API Key by registering for free in https://www.tiny.cloud<br/>
+Then update the new API Key in content-editor.component.html

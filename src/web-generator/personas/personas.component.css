@@ -1,0 +1,85 @@
+.row {
+    padding-top: 5px;
+}
+
+.fullName {
+    color:#7d211a;
+    font-weight: bold;
+}
+
+.email {
+    font-weight: bolder;
+}
+
+.smf {
+    font-size: 14px;
+    font-style: italic;
+    color:#f59700
+}
+
+.row {
+    font-size: 14px;
+}
+
+h1 {
+    color:#7d211a;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.people {
+    width: 90%;
+}
+
+.container {
+    max-width: 90%;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+
+.gpo {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: #7d211a;
+}
+
+.gpo a{
+    background-color:#7d211a;
+    padding:8px;
+    border: 1px solid #7d211a;
+    border-radius: 25px;
+    color:white;
+}
+
+.gpo a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+.gpo a:hover{
+    text-decoration: none;
+    background-color:#f59700;
+    padding:8px;
+    border: 1px solid #7d211a;
+    border-radius: 25px;
+    color:#7d211a;
+}
+
+ .gpo .active {
+    background-color:#f59700;
+    padding:8px;
+    border: 1px solid #f59700;
+    border-radius: 25px;
+    color:white;
+}
+
+.gpo span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+

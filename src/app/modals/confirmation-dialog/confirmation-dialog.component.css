@@ -1,0 +1,7 @@
+.modal-normal {
+    max-width: 50%;
+}
+
+:host .modal {
+    top: 100px!important;
+}
