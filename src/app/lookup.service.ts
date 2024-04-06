@@ -12,7 +12,7 @@ export class LookupService {
   constructor(private http: HttpClient) { }
 
   public lookupFinanciamiento() {
-    return this.http.get(this.lookupEndpoint + "/financiamiento")
+    return this.http.get(this.lookupEndpoint + "/financiamiento").toPromise()
   }
 
   public lookupDecanatos() {
@@ -61,5 +61,9 @@ export class LookupService {
 
   public lookupSubDisciplinaDeDisciplina(disciplinaId:number){
     return this.http.get(this.lookupEndpoint+"/clasificacion/subdisciplina/"+disciplinaId);
+  }
+
+  public lookupLineaInvestigacion(subdisciplinaId:number){
+    return this.http.get(this.lookupEndpoint + "/clasificacion/linea_investigacion/" + subdisciplinaId)
   }
 }

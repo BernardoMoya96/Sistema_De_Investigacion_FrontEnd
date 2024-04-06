@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { UserRoleSelectionDialogComponent } from './user-role-selection-dialog/user-role-selection-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,6 @@ export class AppModalService {
       return modalRef.result;
   }
 
-
   public ack(
     title:string, 
     message: string,
@@ -40,5 +40,11 @@ export class AppModalService {
       return modalRef.result;
   }
 
+  public openUserRoleSelection(options:Array<any>) : Promise<number>{
+      const modalRef = this.modalService.open(UserRoleSelectionDialogComponent, 
+        {size: 'lg', keyboard: false, backdrop: 'static', animation: true});
+      modalRef.componentInstance.options = options;
+      return modalRef.result;
+  }
 
 }

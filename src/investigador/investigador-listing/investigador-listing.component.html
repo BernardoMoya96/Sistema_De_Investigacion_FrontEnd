@@ -5,7 +5,7 @@
             </div>
             <nav class="navbar bg-white sticky-top">
                 <h1 class="title">Registro de Proyecto de Investigación</h1>
-                <h1 class="userName">Usuario: JOSE BERNARDO MOYA IBARRA</h1>
+                <h1 class="userName">Usuario: {{userName}}</h1>
             </nav>
             <hr style="width:100%">
             <div class="container">
@@ -120,25 +120,12 @@
                 <div class="form-group row">
                     <label for="lineas_investigacion" class="col-sm-3 col-form-label">Líneas de Investigación:</label>
                     <div class="col-sm-8">
-                        <!-- <select id="lineas_investigacion" class="form-control" formControlName="lineasInvestigacion" >
+                        <select id="lineasInvestigacionId" class="form-control" formControlName="lineasInvestigacionId">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
-                            <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                            <option *ngFor="let opt of lineasInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="categoria_investigacion" class="col-sm-3 col-form-label">Categoría de
-                        Investigación:</label>
-                    <div class="col-sm-8">
-                        <select id="categoriaInvestigacion" class="form-control"
-                            formControlName="categoriaInvestigacion">
-                            <option value="">SELECCIONE UNA OPCIÓN...</option>
-                            <option *ngFor="let opt of categoriaInvestigacion" value="{{opt.key}}">{{opt.value}}
-                            </option>
-                        </select>
-                        <mat-hint *ngIf="$fb['categoriaInvestigacion'].errors"><span
-                                *ngIf="$fb['categoriaInvestigacion'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['lineasInvestigacionId'].errors"><span
+                                *ngIf="$fb['lineasInvestigacionId'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -192,11 +179,13 @@
                     <label for="fuente_financiamiento" class="col-sm-3 col-form-label">Fuente de financiamiento:
                     </label>
                     <div class="col-sm-8">
-                        <!-- <select id="fuente_financiamiento" class="form-control" formControlName="fuente_financiamiento" style="min-width: 100%">
+                        <select id="fuenteFinanciamiento" class="form-control" formControlName="fuenteFinanciamiento"
+                            style="min-width: 100%">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
-                            <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
-                        </select> -->
-                        <!-- <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                            <option *ngFor="let opt of fuenteFinanciamientos" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['fuenteFinanciamiento'].errors"><span
+                                *ngIf="$fb['fuenteFinanciamiento'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -211,8 +200,9 @@
             </div>
             <div class="participantes">
                 <hr style="width:100%">
-                <div class="form-group row">
-                    <h5 class="subtitle">Participantes:</h5>
+                <h5 class="subtitle">Participantes:</h5>
+                <div class="form-group row">                    
+                <br>
                     <label for="colaboradores" class="col-sm-3 col-form-label">
                         <h5>Colaboradores:</h5>
                     </label>
@@ -231,15 +221,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of listData">
+                                <tr *ngFor="let item of listColaboradores; let i = index">
                                     <td style="width:10%"><span>{{item.nomina}}</span></td>
                                     <td style="width:40%"><span>{{item.nombre}}</span></td>
                                     <td style="width:30%"><input type="text" class="form-control form-control-sm"
                                             style="width:100%"><span></span></td>
                                     <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
                                                 style="width:100%"></span></td>
-                                    <td><button type="button" class="btn btn-primary"
-                                            (click)="removeItem(item)">Eliminar</button></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'colaboradores')">Eliminar</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -253,6 +242,29 @@
                         <img class="button" src="assets/img/button-agregar-alumno.png" width="200px"
                             (click)="open(alumnomodal)" />
                     </div>
+                    <div class="col-md-8 mt-4">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Nómina:</th>
+                                    <th style="width:40%">Nombre:</th>
+                                    <th style="width:30%">Participación:</th>
+                                    <th style="width:10%">Horas:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listAlumnos; let i = index">
+                                    <td style="width:10%"><span>{{item.nomina}}</span></td>
+                                    <td style="width:40%"><span>{{item.nombre}}</span></td>
+                                    <td style="width:30%"><input type="text" class="form-control form-control-sm"
+                                            style="width:100%"><span></span></td>
+                                    <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                                style="width:100%"></span></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'alumnos')">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="form-group row">
                     <label for="externos-uag" class="col-sm-3 col-form-label">
@@ -262,6 +274,29 @@
                         <button class="btn btn-xs btn-primary" (click)="open(externomodal)"><i
                                 style="padding-right: 25px;" class="fa fa-plus-circle" aria-hidden="true"></i>Agregar
                             externos UAG</button>
+                    </div>
+                    <div class="col-md-8 mt-4">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Nómina:</th>
+                                    <th style="width:40%">Nombre:</th>
+                                    <th style="width:30%">Participación:</th>
+                                    <th style="width:10%">Horas:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listInvestigadores; let i = index">
+                                    <td style="width:10%"><span>{{item.nomina}}</span></td>
+                                    <td style="width:40%"><span>{{item.nombre}}</span></td>
+                                    <td style="width:30%"><input type="text" class="form-control form-control-sm"
+                                            style="width:100%"><span></span></td>
+                                    <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                                style="width:100%"></span></td>
+                                    <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'investigadores')">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -344,40 +379,19 @@
                             </label>
                         </div>
                     </div>
-                    <div class="p-2">
-                        <label for="estadoLookupEstadoCodigo" class="col">Producto Generado:</label>
+                    <!-- <div class="p-2">
+                        <label for="producto_generado" class="col">Producto Generado:</label>
                     </div>
                     <div class="p-2">
                         <div class="col-sm-8">
-                            <!-- <select id="estadoLookupEstadoCodigo" class="form-control" formControlName="estadoLookupEstadoCodigo" >
+                            <select id="productoGenerado" class="form-control" formControlName="productoGenerado">
                                 <option value="">SELECCIONE UNA OPCIÓN...</option>
-                                <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                                <option *ngFor="let opt of productosGenerados" value="{{opt.key}}">{{opt.value}}</option>
                             </select>
-                            <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                            <mat-hint *ngIf="$fb['productoGenerado'].errors"><span *ngIf="$fb['productoGenerado'].errors.required">* Requerido</span></mat-hint>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-            </div>
-            <div class="lineas_de_investigacion">
-                <hr style="width:100%">
-                <h5 class="subtitle text-center">Lineas de Investigación:</h5>
-                <div class="h-100 d-flex align-items-center justify-content-center">
-                    <div>
-                        <div class="col-sm-8">
-                            <!-- <select id="estadoLookupEstadoCodigo" class="form-control" formControlName="estadoLookupEstadoCodigo" >
-                                <option value="">SELECCIONE UNA OPCIÓN...</option>
-                                <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
-                            </select>
-                            <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
             <div class="guardar_registrar">
                 <hr style="width:100%">
@@ -407,14 +421,14 @@
             </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
-                    formControlName="participantes" />
-                <datalist id="user_id" formControlName="userId">
-                    <option *ngFor="let opt of investigadores"
-                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
-                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
-                </datalist>
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit('colaborador')">
+                <input list="colaborador_user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="colaboradores" />
+                    <datalist id="colaborador_user_id">
+                        <option *ngFor="let opt of colaboradores"
+                            [value]="opt.id + ' - ' + opt.nombres + ' ' + opt.apellidoPaterno + ' ' + opt.apellidoMaterno">
+                        </option>
+                    </datalist>
                 <button type="submit" class="btn btn-primary">Insertar usuario</button>
             </form>
         </div>
@@ -427,13 +441,13 @@
             </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
-                    formControlName="participantes" />
-                <datalist id="user_id" formControlName="userId">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit('alumno')">
+                <input list="alumno_user_id" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="alumnos" />
+                <datalist id="alumno_user_id">
                     <option *ngFor="let opt of alumnos"
-                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
-                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
+                        [value]="opt.id + ' - ' + opt.nombres + ' ' + opt.apellidoPaterno + ' ' + opt.apellidoMaterno">
+                    </option>
                 </datalist>
                 <button type="submit" class="btn btn-primary">Insertar usuario</button>
             </form>
@@ -447,13 +461,13 @@
             </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <input list="user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
-                    formControlName="participantes" />
-                <datalist id="user_id" formControlName="userId">
-                    <option *ngFor="let opt of externos"
-                        value="{{opt.id}} - {{opt.nombres}} {{opt.apellidoPaterno}} {{opt.apellidoMaterno}}">
-                        <!-- <option *ngFor="let opt of usuarios" value="{{opt.id}}"></option> -->
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit('externo')">
+                <input list="externo_user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
+                    formControlName="investigadores" />
+                <datalist id="externo_user_id">
+                    <option *ngFor="let opt of investigadores"
+                        [value]="opt.id + ' - ' + opt.nombres + ' ' + opt.apellidoPaterno + ' ' + opt.apellidoMaterno">
+                    </option>
                 </datalist>
                 <button type="submit" class="btn btn-primary">Insertar usuario</button>
             </form>

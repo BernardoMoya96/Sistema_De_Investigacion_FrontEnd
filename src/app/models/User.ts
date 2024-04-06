@@ -10,4 +10,6 @@ export interface User {
     password : string;
     token : string;
     img:string;
+    comments:string;
+    rol:string;
 }

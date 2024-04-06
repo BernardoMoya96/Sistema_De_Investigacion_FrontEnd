@@ -21,15 +21,13 @@ export class LoginComponent implements OnInit {
     private modalService:AppModalService, private lookupService: LookupService) { }
 
   loginFB: FormGroup = new FormGroup({});
-  returnUrl: string  = 'inicio';
+  returnUrl: string  = "/";
   fieldTextType: boolean = false;
 
 
   ngOnInit(): void {
     // get return url from query param
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'inicio';
-    if (this.returnUrl.trim() == '%2F' || this.returnUrl.trim() == '/')
-      this.returnUrl = 'inicio' 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     var cookie = this.cookieService.get(AppConfig.COOKIE_KEY);
     if(cookie && this.returnUrl !== 'logout') {
       window.location.replace(this.returnUrl);

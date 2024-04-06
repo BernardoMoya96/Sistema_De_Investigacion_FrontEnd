@@ -1,75 +1,31 @@
+<div *ngIf="isLoggedIn">
    <div class="banner">
     <div class="bannerLeft">
-        <h2>{{fullResearcherName}}</h2>
-        <div class="bannerItmsText" *ngIf="customBanner && customBanner.items && customBanner.items.length > 0">
-          <ng-container *ngFor="let item of customBanner.items; let idx = index">
-            <div class="banner-itm" ><span class="divider-sm" *ngIf="idx > 0">|</span>{{item.texto}}</div>
-          </ng-container>
-        </div>
+        <h2>Sistema de Información de la Coordinación de <br/> Investigación y Desarrollo Tecnológico</h2>
     </div>
     <div class="bannerRight">
-       <ng-container *ngIf="customBanner && customBanner.logo && customBanner.logo.img">
-        <img style="float: left;" [src]="customBanner.logo.img" width="200px" height="190px" />
-       </ng-container>
-       <div class="uag-logo-bnr">
-        <img src="assets/img/logoUAG.png" width="90px" height="114px" />
-        <!--p>Universidad Autónoma <br/> de Guadalajara</p-->
-        </div>
+      <p style="display: inline; float: left;padding-top: 20px; padding-right: 20px;">Universidad Autónoma <br/><span style="margin-left: 75px;"> de Guadalajara</span></p>
+      <img style="display: inline; float: left;" src="../../assets/img/logoUAG.png" width="67px" height="85px" />
     </div>
    </div> <!--end banner-->
 
-   <div class="menuWrapper" *ngIf="!editMode">
-    <nav style="padding-left:1%; width: 100%;" class="navbar navbar-expand-lg navbar-light">
+   <div class="menuWrapper">
+    <nav style="padding-left:1%;width: 100%;" class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'inicio'}">
-              <a class="nav-link" (click)="gotoSection('inicio')">Inicio </a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'personas'}">
-              <a class="nav-link" (click)="gotoSection('personas')" >Grupo de Investigación</a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'proyectos'}">
-              <a class="nav-link" (click)="gotoSection('proyectos')">Proyectos</a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'publicaciones'}" >
-                <a class="nav-link" (click)="gotoSection('publicaciones')">Publicaciones</a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'laboratorio'}" >
-              <a class="nav-link" (click)="gotoSection('laboratorio')">Laboratorio</a>
-          </li><span class="divider">|</span>
-          <li class="nav-item uagmenu" [ngClass]="{'active': activeSection == 'noticias'}" >
-            <a class="nav-link" (click)="gotoSection('noticias')">Noticias</a>
-        </li><span class="divider">|</span>
-          <li class="nav-item uagmenu" style="border-right: none!important;" [ngClass]="{'active': activeSection == 'contacto'}" >
-            <a class="nav-link" (click)="gotoSection('contacto')">Contacto</a>
-          </li>
-          </ul>
-        </div>
-      </nav>
-   </div> <!--end menu outside-->
-
-   <div class="menuWrapper" *ngIf="editMode">
-    <nav style="padding-left:1%;width:100%" class="navbar navbar-expand-lg navbar-light">
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav editMode">
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/inicio']">Inicio </a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/encabezado']">Encabezado </a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/proyectos']">Proyectos </a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/laboratorio']" >Laboratorio</a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/noticias']">Noticias </a>
-            </li><span class="divider">|</span>
-            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
-              <a class="nav-link" [routerLink]="['editor/' + researcherId + '/contacto']">Contacto</a>
+            <li class="nav-item uagmenu" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link" [routerLink]="['inicio']">Inicio </a>
+              <a routerLink="" style="display: none"></a>
             </li>
+            <li class="nav-item uagmenu" [routerLinkActive]="['active']">
+              <a class="nav-link" [routerLink]="['tesis']" >Tesis</a>
+            </li>
+            <li class="nav-item uagmenu" [routerLinkActive]="['active']" *ngIf="isResearcher || isAdmin">
+              <a class="nav-link" [routerLink]="['investigador']">Proyectos de Investigación</a>
+            </li>
+            <li class="nav-item uagmenu" [routerLinkActive]="['active']" *ngIf="isAdmin" >
+                <a class="nav-link" [routerLink]="['admin']">Administración</a>
+              </li>
             <li style="position:absolute; right: 25px;" id="userMenu-x" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" style="font-size: 1em;" href="#" (click)="doNothing($event)" id="navbarDropdownMenuLink">
                 {{userName}} <i style="margin-left:5px;" class="fa fa-user" aria-hidden="true"></i>
@@ -81,5 +37,5 @@
           </ul>
         </div>
       </nav>
-   </div> <!--end menu outside-->
-<!--/div-->
+   </div> <!--end menu-->
+</div>

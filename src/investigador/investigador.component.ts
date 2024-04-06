@@ -89,7 +89,7 @@ export class InvestigadorComponent implements OnInit{
         createFooterRow: true,
         showFooterRow:true
       };
-      this.dataset1 = await this.getProyectos();
+      // this.dataset1 = await this.getProyectos();
     }
   
     async deleteProyecto(proyectoId: number) {
@@ -123,7 +123,7 @@ export class InvestigadorComponent implements OnInit{
       );
     }
 
-    async getProyectos() {
+ /*    async getProyectos() {
       // mock a dataset
       const tmpDataset:any = [];
       var res = await this.investigadorService.fetchAllProyectos();            
@@ -146,7 +146,7 @@ export class InvestigadorComponent implements OnInit{
       }            
       console.log(tmpDataset);
       return tmpDataset;    
-    }
+    } */
       
     angularGrid2Ready(angularGrid: AngularGridInstance) {
       this.angularGrid = angularGrid;

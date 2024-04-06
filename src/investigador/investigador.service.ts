@@ -27,10 +27,10 @@ export class InvestigadorService {
     return this.http.get(this.baseURL + "/" + proyectoId);
   }
 
-  public fetchAllProyectos() {
-    return this.http.get(this.baseURL+"/lista").toPromise();
+/*   public fetchAllProyectos() {
+    return this.http.get(this.baseURL+"/lista").toPromise(); 
   }
-
+ */
   public deleteProyectoById(proyectoId: number){
     return this.http.delete(this.baseURL + "/" + proyectoId, {responseType: 'text'});
   }
