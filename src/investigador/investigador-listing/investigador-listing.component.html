@@ -129,6 +129,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="categoria_investigacion" class="col-sm-3 col-form-label">Categoría de Investigación:</label>
+                    <div class="col-sm-8">
+                        <select id="categoriaInvestigacionId" class="form-control" formControlName="categoriaInvestigacionId">
+                            <option value="">SELECCIONE UNA OPCIÓN...</option>
+                            <option *ngFor="let opt of categoriaInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
+                        </select>
+                        <mat-hint *ngIf="$fb['categoriaInvestigacionId'].errors"><span
+                                *ngIf="$fb['categoriaInvestigacionId'].errors.required">* Requerido</span></mat-hint>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="tipo_investigacion" class="col-sm-3 col-form-label">Tipo de Investigación:</label>
                     <div class="col-sm-8">
                         <select id="tipo_investigacion" class="form-control" formControlName="tipoInvestigacion">
