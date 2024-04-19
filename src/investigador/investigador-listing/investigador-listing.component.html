@@ -390,18 +390,18 @@
                             </label>
                         </div>
                     </div>
-                    <!-- <div class="p-2">
+                    <div class="p-2">
                         <label for="producto_generado" class="col">Producto Generado:</label>
                     </div>
                     <div class="p-2">
                         <div class="col-sm-8">
                             <select id="productoGenerado" class="form-control" formControlName="productoGenerado">
                                 <option value="">SELECCIONE UNA OPCIÓN...</option>
-                                <option *ngFor="let opt of productosGenerados" value="{{opt.key}}">{{opt.value}}</option>
+                                <option *ngFor="let opt of productoGenerado" value="{{opt.key}}">{{opt.value}}</option>
                             </select>
-                            <mat-hint *ngIf="$fb['productoGenerado'].errors"><span *ngIf="$fb['productoGenerado'].errors.required">* Requerido</span></mat-hint>
+                            <mat-hint *ngIf="$fb['productoGeneradoId'].errors"><span *ngIf="$fb['productoGeneradoId'].errors.required">* Requerido</span></mat-hint>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="guardar_registrar">

@@ -33,6 +33,7 @@ export class InvestigadorListingComponent implements OnInit {
   tipoInvestigacion: Array<any> = [];
   grado: Array<any> = [];
   fuenteFinanciamientos: Array<any> = [];
+  productoGenerado: Array<any> = [];
   proyectoForm!: FormGroup;
   userForm!: FormGroup;
   mode: string | undefined;
@@ -70,6 +71,7 @@ export class InvestigadorListingComponent implements OnInit {
       subdisciplinaId: ['', Validators.required],
       lineasInvestigacionId: ['', Validators.required],
       categoriaInvestigacionId: ['', Validators.required],
+      productoGeneradoId: ['', Validators.required],
       estadoLookup: ['', Validators.required],
       productoGenerado: ['', Validators.required],
       beneficiario: ['', Validators.required],
@@ -284,6 +286,9 @@ export class InvestigadorListingComponent implements OnInit {
       this.estadoLookup = data as Array<any>;
       //console.log("Estado Proyecto: ", this.estadoLookup)
     });
+    this.lookupService.lookUpCategoriaInvestigacion().subscribe(data => {
+      this.categoriaInvestigacion = data as Array<any>;
+    })
     /*this.adminService.fetchAllUsers().then(data =>{
       this.usuarios = data as Array<any>;
       console.log("Usuarios: ",this.usuarios);
