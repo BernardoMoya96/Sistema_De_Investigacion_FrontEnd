@@ -54,30 +54,6 @@ export class InvestigadorListingComponent implements OnInit {
     this.decanatos = [];
 
     this.proyectoForm = this.fb.group({
-      idProyecto: ['', Validators.required],
-      titulo: ['', Validators.required],
-      fechaRegistro: ['', Validators.required],
-      decanatoId: ['', Validators.required],
-      departamentoId: ['', Validators.required],
-      facultadId: ['', Validators.required],
-      campoConocimientoId: ['', Validators.required],
-      tipoInvestigacion: ['', Validators.required],
-      grado: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      objetivos: ['', Validators.required],
-      resultados: ['', Validators.required],
-      fuenteFinanciamiento: ['', Validators.required],
-      disciplinaId: ['', Validators.required],
-      subdisciplinaId: ['', Validators.required],
-      lineasInvestigacionId: ['', Validators.required],
-      categoriaInvestigacionId: ['', Validators.required],
-      productoGeneradoId: ['', Validators.required],
-      estadoLookup: ['', Validators.required],
-      productoGenerado: ['', Validators.required],
-      beneficiario: ['', Validators.required],
-      fechaInicio: ['', Validators.required],
-      fechaTermino: ['', Validators.required],
-      duracionEstimada: ['', Validators.required],
       colaboradores: this.fb.array([]),
       alumnos: this.fb.array([]),
       investigadoresExternos: this.fb.array([])
@@ -85,95 +61,7 @@ export class InvestigadorListingComponent implements OnInit {
   }
 
 
-  // participantes() : FormArray {
-  //   return this.userForm.get("quantities") as FormArray
-  // }
 
-  /*   newParticipante(): FormGroup {
-      return this.fb.group({
-        nomina: '', 
-        nombre: '',
-        participacion: '',
-        horas: ''      
-      })
-    } */
-
-  // addParticipante(){
-  //   this.participantes().push(this.newParticipante());
-  // }
-
-  // removeParticipante(i:number) {
-  //   this.participantes().removeAt(i);
-  // }
-
-
-  /* onSubmit(action: string) {
-    let nomina: number;
-    let nombre;
-    let datos;
-    let ordenar_nombre;
-
-    // this.listData.push(this.userForm.value);
-
-    interface CamposTabla {
-      nomina: string;
-      nombre: string;
-    }
-
-    this.modalService.dismissAll();
-    // console.log(this.userForm.value.participantes);        
-    // nombre = this.userForm.value.participantes;    
-    // nombre.toString();
-    // const myArray = nombre.split("-");    
-    // this.listData.push(myArray[0]);
-    // this.listData.push(myArray[1]);        
-
-    console.log(this.listData);
-
-    if (action === 'colaborador') {
-      datos = this.userForm.value.colaboradores;
-      datos.toString();
-      const myArray = datos.split(" - ");
-      nombre = myArray[1];
-      const splitNombre = nombre.split(" ");
-      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-
-      const obj1: CamposTabla = {
-        nomina: myArray[0],
-        nombre: ordenar_nombre.toUpperCase()
-      };
-      this.listData.push(obj1);
-    } else if (action === 'alumno') {
-      datos = this.userForm.value.alumnos;
-      datos.toString();
-      const myArray = datos.split(" - ");
-      nombre = myArray[1];
-      const splitNombre = nombre.split(" ");
-      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-
-      const obj1: CamposTabla = {
-        nomina: myArray[0],
-        nombre: ordenar_nombre.toUpperCase()
-      };
-      this.listData.push(obj1);
-    } else if (action === 'externos') {
-      datos = this.userForm.value.externos;
-      datos.toString();
-      const myArray = datos.split(" - ");
-      nombre = myArray[1];
-      const splitNombre = nombre.split(" ");
-      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-
-      const obj1: CamposTabla = {
-        nomina: myArray[0],
-        nombre: ordenar_nombre.toUpperCase()
-      };
-      this.listData.push(obj1);
-    }
-
-    // console.log(ordenar_nombre);
-
-  } */
 
   onSubmit(userType: string) {
     interface CamposTabla {
@@ -238,23 +126,15 @@ export class InvestigadorListingComponent implements OnInit {
     }
 
   }
-  // payloadFields:Array<string> = this.getArrayOfFields();
+
 
   public addItem(): void {
-    //this.listData.push(this.proyectoForm.value);
-    //this.proyectoForm.reset();
+   
     console.log("Hola");
   }
   reset() {
     this.proyectoForm.reset();
   }
-  /*  removeItem(element: any) {
-     this.listData.forEach((value: any, index: any) => {
-       if (value == element) {
-         this.listData.splice(index, 1);
-       }
-     })
-   } */
 
   ngOnInit(): void {
 
@@ -436,21 +316,7 @@ export class InvestigadorListingComponent implements OnInit {
     })
   }
   addUser(): void {
-    // let id : number;
-    // let userId: string;
-    // let nombre: string;
-    // let titulo: string;
-    // let usuario: string;
-    // id = this.userForm.value.userId;
-
-    // // this.adminService.getUserById(id).subscribe((res:any) =>{        
-    // // console.log(res);    
-    // //   this.listData.push(res);   
-    // //   console.log(this.listData);
-    // // });
     console.log(JSON.stringify(this.proyectoForm.value));
-    // this.listData.push(this.userForm.value);
-    // this.userForm.reset();
   }
 
   initFormGroupFromProyecto(proyectoId: number) {
@@ -463,28 +329,6 @@ export class InvestigadorListingComponent implements OnInit {
       });
     });
   }
-
-
-  // getArrayOfFields():Array<string> {
-  //   return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','decanatoId','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
-  // }
-
-  // initEmptyFormGroup() {
-  //   let fcArray:any = {};
-  //   for (let _key of this.payloadFields) {
-  //     var fc;
-  //     if (_key == 'email')
-  //       fc = new FormControl('',[Validators.required, Validators.email]);
-  //     else if (_key == 'comentarios')
-  //       fc = new FormControl('');
-  //     else if (_key == 'roles') 
-  //       fc = new FormControl([], Validators.required)
-  //     else
-  //       fc = new FormControl('',Validators.required);
-  //     fcArray[_key] = fc;
-  //   }
-  //   this.proyectoForm = new FormGroup(fcArray);
-  // }
 
 
   submitForm() {
@@ -535,7 +379,4 @@ export class InvestigadorListingComponent implements OnInit {
     // Aquí capturas los datos del formulario y los muestras en la consola
     console.log('Datos del Formulario:', this.proyectoForm.value);
   }
-
-
-
 }
