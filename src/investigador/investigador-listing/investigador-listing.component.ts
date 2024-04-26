@@ -77,7 +77,10 @@ export class InvestigadorListingComponent implements OnInit {
       beneficiario: ['', Validators.required],
       fechaInicio: ['', Validators.required],
       fechaTermino: ['', Validators.required],
-      duracionEstimada: ['', Validators.required]
+      duracionEstimada: ['', Validators.required],
+      colaboradores: this.fb.array([]),
+      alumnos: this.fb.array([]),
+      investigadoresExternos: this.fb.array([])
     });
   }
 
@@ -527,5 +530,12 @@ export class InvestigadorListingComponent implements OnInit {
         console.error('Lista no encontrada');
     }
   }
+
+  registrarProyecto() {
+    // Aquí capturas los datos del formulario y los muestras en la consola
+    console.log('Datos del Formulario:', this.proyectoForm.value);
+  }
+
+
 
 }

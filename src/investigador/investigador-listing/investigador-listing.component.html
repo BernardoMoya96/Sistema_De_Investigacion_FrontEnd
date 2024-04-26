@@ -1,6 +1,6 @@
 <div id="userDetailCard">
     <div class="container">
-        <form [formGroup]="proyectoForm">
+        <form [formGroup]="proyectoForm" (ngSubmit)="registrarProyecto()">
             <div class="form-group row">
             </div>
             <nav class="navbar bg-white sticky-top">
@@ -393,7 +393,7 @@
                     <div class="p-2">
                         <label for="producto_generado" class="col">Producto Generado:</label>
                     </div>
-                    <div class="p-2">
+                  <!--   <div class="p-2">
                         <div class="col-sm-8">
                             <select id="productoGenerado" class="form-control" formControlName="productoGenerado">
                                 <option value="">SELECCIONE UNA OPCIÓN...</option>
@@ -401,7 +401,7 @@
                             </select>
                             <mat-hint *ngIf="$fb['productoGeneradoId'].errors"><span *ngIf="$fb['productoGeneradoId'].errors.required">* Requerido</span></mat-hint>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="guardar_registrar">
@@ -413,8 +413,10 @@
                         </div>
                         <div class="col-md-auto">
                         </div>
-                        <div class="col col-lg-2">
-                            <img class="button" src="assets/img/button-registrar.png" width="200px" />
+                        <div class="col col-lg-2">                            
+                            <button type="submit" style="border: none; background: none;">
+                                <img src="assets/img/button-registrar.png" alt="Registrar" width="200px">
+                              </button>                   
                         </div>
                     </div>
                 </div>
