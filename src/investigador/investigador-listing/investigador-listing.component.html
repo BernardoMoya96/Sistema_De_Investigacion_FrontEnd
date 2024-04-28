@@ -23,11 +23,14 @@
                                     <th style="width:10%">Horas:</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody formArrayName="colaboradores">
                                 <tr *ngFor="let item of listColaboradores; let i = index">
-                                
-                                    <td style="width:10%"><span>{{item.nomina}}</span></td>
-                                    <td style="width:40%"><span>{{item.nombre}}</span></td>
+                                    <td>
+                                        <input type="text" class="form-control" formControlName="nomina" readonly>
+                                    </td>
+                                    <td style="width:40%">
+                                        <input type="text" class="form-control" formControlName="nombre" readonly>
+                                    </td>
                                     <td style="width:30%"><input type="text" class="form-control form-control-sm"
                                             style="width:100%"><span></span></td>
                                     <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
@@ -108,9 +111,6 @@
                 <hr style="width:100%">
                 <div class="container">
                     <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
-                            <img class="button" src="assets/img/button-guardar.png" width="200px" (click)="addUser()" />
-                        </div>
                         <div class="col-md-auto">
                         </div>
                         <div class="col col-lg-2">                            
@@ -138,7 +138,7 @@
                 <input list="colaborador_user_id" name="myBrowser" placeholder="Selecciona un usuario" class="form-control"
                     formControlName="colaboradores" />
                     <datalist id="colaborador_user_id">
-                        <option *ngFor="let opt of colaboradores"
+                        <option *ngFor="let opt of colab"
                             [value]="opt.id + ' - ' + opt.nombres + ' ' + opt.apellidoPaterno + ' ' + opt.apellidoMaterno">
                         </option>
                     </datalist>

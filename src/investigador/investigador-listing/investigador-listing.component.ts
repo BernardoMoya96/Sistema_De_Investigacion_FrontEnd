@@ -21,7 +21,7 @@ export class InvestigadorListingComponent implements OnInit {
   listInvestigadores: any;
   usuarios: Array<any> = [];
   alumnos: Array<any> = [];
-  colaboradores: Array<any> = [];
+  colab: Array<any> = [];
   investigadores: Array<any> = [];
   estadoLookup: Array<any> = [];
   decanatos: Array<any> = [];
@@ -58,12 +58,26 @@ export class InvestigadorListingComponent implements OnInit {
       alumnos: this.fb.array([]),
       investigadoresExternos: this.fb.array([])
     });
+
+    this.userForm = this.formBuilder.group({
+      colaboradores: [''],
+      alumnos: [''],
+      investigadores: ['']
+    });
   }
 
 
 
 
   onSubmit(userType: string) {
+
+    const colaboradorFormGroup = this.fb.group({
+      nomina: [''],
+      nombre: [''],
+      participacion: [''],
+      horas: ['']
+    });
+
     interface CamposTabla {
       nomina: string;
       nombre: string;
@@ -90,35 +104,40 @@ export class InvestigadorListingComponent implements OnInit {
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listColaboradores.push(obj1);
+        colaboradorFormGroup.get('nomina')?.setValue(obj1.nomina);
+        colaboradorFormGroup.get('nombre')?.setValue(obj1.nombre);
+        console.log('Valor de nomina:', colaboradorFormGroup.get('nomina')?.value);
+        console.log('Valor de nombre:', colaboradorFormGroup.get('nombre')?.value);
+        (this.proyectoForm.get('colaboradores') as FormArray).push(colaboradorFormGroup);
         break;
 
       case 'alumno':
-        console.log('Agregar alumno:', this.userForm.value.alumnos);
-        datos = this.userForm.value.alumnos;
-        myArray = datos.split(" - ");
-        nombre = myArray[1];
-        splitNombre = nombre.split(" ");
-        ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-        const obj2: CamposTabla = {
-          nomina: myArray[0],
-          nombre: ordenar_nombre.toUpperCase()
-        };
-        this.listAlumnos.push(obj2);
-        break;
+      //   console.log('Agregar alumno:', this.userForm.value.alumnos);
+      //   datos = this.userForm.value.alumnos;
+      //   myArray = datos.split(" - ");
+      //   nombre = myArray[1];
+      //   splitNombre = nombre.split(" ");
+      //   ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+      //   const obj2: CamposTabla = {
+      //     nomina: myArray[0],
+      //     nombre: ordenar_nombre.toUpperCase()
+      //   };
+      //   this.listAlumnos.push(obj2);
+      //   break;
 
-      case 'externo':
-        console.log('Agregar externo:', this.userForm.value.investigadores);
-        datos = this.userForm.value.investigadores;
-        myArray = datos.split(" - ");
-        nombre = myArray[1];
-        splitNombre = nombre.split(" ");
-        ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-        const obj3: CamposTabla = {
-          nomina: myArray[0],
-          nombre: ordenar_nombre.toUpperCase()
-        };
-        this.listInvestigadores.push(obj3);
-        break;
+      // case 'externo':
+      //   console.log('Agregar externo:', this.userForm.value.investigadores);
+      //   datos = this.userForm.value.investigadores;
+      //   myArray = datos.split(" - ");
+      //   nombre = myArray[1];
+      //   splitNombre = nombre.split(" ");
+      //   ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+      //   const obj3: CamposTabla = {
+      //     nomina: myArray[0],
+      //     nombre: ordenar_nombre.toUpperCase()
+      //   };
+      //   this.listInvestigadores.push(obj3);
+      //   break;
 
       default:
         // Manejar caso por defecto o error
@@ -137,12 +156,6 @@ export class InvestigadorListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.userForm = this.formBuilder.group({
-      colaboradores: [''],
-      alumnos: [''],
-      investigadores: ['']
-    });
     var user = this.sessionService.getUserSession();
     if (user) {
       this.userName = user.nombres + " " + user.apellidoPaterno + user.apellidoMaterno;
@@ -177,8 +190,8 @@ export class InvestigadorListingComponent implements OnInit {
       console.log("Usuarios: ",this.usuarios);
     })*/
     this.adminService.fetchAllColaboradores().then(data => {
-      this.colaboradores = data as Array<any>;
-      this.colaboradores.forEach(colaborador => {
+      this.colab = data as Array<any>;
+      this.colab.forEach(colaborador => {
         console.log("Colaboradores: " + `ID: ${colaborador.id}, Nombre: ${colaborador.nombres} ${colaborador.apellidoPaterno} ${colaborador.apellidoMaterno}`);
       });
     })
@@ -380,3 +393,4 @@ export class InvestigadorListingComponent implements OnInit {
     console.log('Datos del Formulario:', this.proyectoForm.value);
   }
 }
+
