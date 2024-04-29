@@ -22,7 +22,7 @@ export class InvestigadorListingComponent implements OnInit {
   usuarios: Array<any> = [];
   alumn: Array<any> = [];
   colab: Array<any> = [];
-  investigadores: Array<any> = [];
+  invest: Array<any> = [];
   estadoLookup: Array<any> = [];
   decanatos: Array<any> = [];
   campoConocimiento: Array<any> = [];
@@ -73,6 +73,10 @@ export class InvestigadorListingComponent implements OnInit {
   get alumnos(): FormArray {
     return this.proyectoForm.get('alumnos') as FormArray;
   }
+
+  get investigadoresExternos(): FormArray {
+    return this.proyectoForm.get('investigadoresExternos') as FormArray;
+  }
   
   onSubmit(userType: string) {
 
@@ -84,6 +88,13 @@ export class InvestigadorListingComponent implements OnInit {
     });
 
     const alumnoFormGroup = this.fb.group({
+      nomina: [''],
+      nombre: [''],
+      participacion: [''],
+      horas: ['']
+    });
+
+    const investigadorFormGroup = this.fb.group({
       nomina: [''],
       nombre: [''],
       participacion: [''],
@@ -142,19 +153,24 @@ export class InvestigadorListingComponent implements OnInit {
         (this.proyectoForm.get('alumnos') as FormArray).push(alumnoFormGroup);
         break;
 
-      // case 'externo':
-      //   console.log('Agregar externo:', this.userForm.value.investigadores);
-      //   datos = this.userForm.value.investigadores;
-      //   myArray = datos.split(" - ");
-      //   nombre = myArray[1];
-      //   splitNombre = nombre.split(" ");
-      //   ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-      //   const obj3: CamposTabla = {
-      //     nomina: myArray[0],
-      //     nombre: ordenar_nombre.toUpperCase()
-      //   };
-      //   this.listInvestigadores.push(obj3);
-      //   break;
+      case 'externo':
+        console.log('Agregar externo:', this.userForm.value.investigadores);
+        datos = this.userForm.value.investigadores;
+        myArray = datos.split(" - ");
+        nombre = myArray[1];
+        splitNombre = nombre.split(" ");
+        ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+        const obj3: CamposTabla = {
+          nomina: myArray[0],
+          nombre: ordenar_nombre.toUpperCase()
+        };
+        this.listInvestigadores.push(obj3);
+        investigadorFormGroup.get('nomina')?.setValue(obj3.nomina);
+        investigadorFormGroup.get('nombre')?.setValue(obj3.nombre);
+        console.log('Valor de nomina:', investigadorFormGroup.get('nomina')?.value);
+        console.log('Valor de nombre:', investigadorFormGroup.get('nombre')?.value);
+        (this.proyectoForm.get('investigadoresExternos') as FormArray).push(investigadorFormGroup);
+        break;
 
       default:
         // Manejar caso por defecto o error
@@ -213,8 +229,8 @@ export class InvestigadorListingComponent implements OnInit {
       });
     })
     this.adminService.fetchAllInvestigadores().then(data => {
-      this.investigadores = data as Array<any>;
-      this.investigadores.forEach(investigador => {
+      this.invest = data as Array<any>;
+      this.invest.forEach(investigador => {
         console.log("Investigadores: " + `ID: ${investigador.id}, Nombre: ${investigador.nombres} ${investigador.apellidoPaterno} ${investigador.apellidoMaterno}`);
       });
     })
@@ -400,7 +416,8 @@ export class InvestigadorListingComponent implements OnInit {
         alumnosArray.removeAt(index);        
         break;
       case 'investigadores':
-        this.listInvestigadores.splice(index, 1);
+        const investigadoresArray = this.proyectoForm.get('investigadoresExternos') as FormArray;
+        investigadoresArray.removeAt(index);      
         break;
       default:
         console.error('Lista no encontrada');
