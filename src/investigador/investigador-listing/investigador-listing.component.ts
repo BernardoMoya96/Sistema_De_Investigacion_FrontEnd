@@ -66,8 +66,6 @@ export class InvestigadorListingComponent implements OnInit {
     });
   }
 
-
-
   get colaboradores(): FormArray {
     return this.proyectoForm.get('colaboradores') as FormArray;
   }
