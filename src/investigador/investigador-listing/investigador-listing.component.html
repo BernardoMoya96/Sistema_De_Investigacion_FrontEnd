@@ -24,19 +24,21 @@
                                 </tr>
                             </thead>
                             <tbody formArrayName="colaboradores">
-                                <tr *ngFor="let item of listColaboradores; let i = index">
-                                    <td>
-                                        <input type="text" class="form-control" formControlName="nomina" readonly>
-                                    </td>
-                                    <td style="width:40%">
-                                        <input type="text" class="form-control" formControlName="nombre" readonly>
-                                    </td>
-                                    <td style="width:30%"><input type="text" class="form-control form-control-sm"
-                                            style="width:100%"><span></span></td>
-                                    <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
-                                                style="width:100%"></span></td>
-                                    <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'colaboradores')">Eliminar</button></td>
-                                </tr>
+                                <ng-container *ngFor="let colaboradorFormGroup of colaboradores.controls; let i = index" [formGroupName]="i">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="nomina" readonly>
+                                        </td>
+                                        <td style="width:40%">
+                                            <input type="text" class="form-control" formControlName="nombre" readonly>
+                                        </td>
+                                        <td style="width:30%"><input type="text" class="form-control form-control-sm"
+                                                style="width:100%" formControlName="participacion"><span></span></td>
+                                        <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                                    style="width:100%" formControlName="horas"></span></td>
+                                        <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'colaboradores')">Eliminar</button></td>
+                                    </tr>
+                                </ng-container>                            
                             </tbody>
                         </table>
                     </div>
