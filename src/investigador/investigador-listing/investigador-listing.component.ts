@@ -20,7 +20,7 @@ export class InvestigadorListingComponent implements OnInit {
   listAlumnos: any;
   listInvestigadores: any;
   usuarios: Array<any> = [];
-  alumnos: Array<any> = [];
+  alumn: Array<any> = [];
   colab: Array<any> = [];
   investigadores: Array<any> = [];
   estadoLookup: Array<any> = [];
@@ -69,10 +69,21 @@ export class InvestigadorListingComponent implements OnInit {
   get colaboradores(): FormArray {
     return this.proyectoForm.get('colaboradores') as FormArray;
   }
+
+  get alumnos(): FormArray {
+    return this.proyectoForm.get('alumnos') as FormArray;
+  }
   
   onSubmit(userType: string) {
 
     const colaboradorFormGroup = this.fb.group({
+      nomina: [''],
+      nombre: [''],
+      participacion: [''],
+      horas: ['']
+    });
+
+    const alumnoFormGroup = this.fb.group({
       nomina: [''],
       nombre: [''],
       participacion: [''],
@@ -113,18 +124,23 @@ export class InvestigadorListingComponent implements OnInit {
         break;
 
       case 'alumno':
-      //   console.log('Agregar alumno:', this.userForm.value.alumnos);
-      //   datos = this.userForm.value.alumnos;
-      //   myArray = datos.split(" - ");
-      //   nombre = myArray[1];
-      //   splitNombre = nombre.split(" ");
-      //   ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
-      //   const obj2: CamposTabla = {
-      //     nomina: myArray[0],
-      //     nombre: ordenar_nombre.toUpperCase()
-      //   };
-      //   this.listAlumnos.push(obj2);
-      //   break;
+        console.log('Agregar alumno:', this.userForm.value.alumnos);
+        datos = this.userForm.value.alumnos;
+        myArray = datos.split(" - ");
+        nombre = myArray[1];
+        splitNombre = nombre.split(" ");
+        ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+        const obj2: CamposTabla = {
+          nomina: myArray[0],
+          nombre: ordenar_nombre.toUpperCase()
+        };
+        this.listAlumnos.push(obj2);
+        alumnoFormGroup.get('nomina')?.setValue(obj2.nomina);
+        alumnoFormGroup.get('nombre')?.setValue(obj2.nombre);
+        console.log('Valor de nomina:', alumnoFormGroup.get('nomina')?.value);
+        console.log('Valor de nombre:', alumnoFormGroup.get('nombre')?.value);
+        (this.proyectoForm.get('alumnos') as FormArray).push(alumnoFormGroup);
+        break;
 
       // case 'externo':
       //   console.log('Agregar externo:', this.userForm.value.investigadores);
@@ -203,8 +219,8 @@ export class InvestigadorListingComponent implements OnInit {
       });
     })
     this.adminService.fetchAllStudents().then(data => {
-      this.alumnos = data as Array<any>;
-      this.alumnos.forEach(alumno => {
+      this.alumn = data as Array<any>;
+      this.alumn.forEach(alumno => {
         console.log("Alumnos: " + `ID: ${alumno.id}, Nombre: ${alumno.nombres} ${alumno.apellidoPaterno} ${alumno.apellidoMaterno}`);
       });
     })
@@ -376,10 +392,12 @@ export class InvestigadorListingComponent implements OnInit {
   deleteRow(index: number, listName: string): void {
     switch (listName) {
       case 'colaboradores':
-        this.listColaboradores.splice(index, 1);
+        const colaboradoresArray = this.proyectoForm.get('colaboradores') as FormArray;
+        colaboradoresArray.removeAt(index);
         break;
       case 'alumnos':
-        this.listAlumnos.splice(index, 1);
+        const alumnosArray = this.proyectoForm.get('alumnos') as FormArray;
+        alumnosArray.removeAt(index);        
         break;
       case 'investigadores':
         this.listInvestigadores.splice(index, 1);

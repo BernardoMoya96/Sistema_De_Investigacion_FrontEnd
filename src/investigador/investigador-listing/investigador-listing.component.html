@@ -36,7 +36,9 @@
                                                 style="width:100%" formControlName="participacion"><span></span></td>
                                         <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
                                                     style="width:100%" formControlName="horas"></span></td>
-                                        <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'colaboradores')">Eliminar</button></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" (click)="deleteRow(i, 'colaboradores')">Eliminar</button>
+                                        </td>
                                     </tr>
                                 </ng-container>                            
                             </tbody>
@@ -61,16 +63,24 @@
                                     <th style="width:10%">Horas:</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr *ngFor="let item of listAlumnos; let i = index">
-                                    <td style="width:10%"><span>{{item.nomina}}</span></td>
-                                    <td style="width:40%"><span>{{item.nombre}}</span></td>
-                                    <td style="width:30%"><input type="text" class="form-control form-control-sm"
-                                            style="width:100%"><span></span></td>
-                                    <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
-                                                style="width:100%"></span></td>
-                                    <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'alumnos')">Eliminar</button></td>
-                                </tr>
+                            <tbody formArrayName="alumnos">
+                                <ng-container *ngFor="let alumnoFormGroup of alumnos.controls; let i = index" [formGroupName]="i">
+                                    <tr>
+                                        <td style="width:10%">
+                                            <input type="text" class="form-control" formControlName="nomina" readonly>
+                                        </td>
+                                        <td style="width:40%">
+                                            <input type="text" class="form-control" formControlName="nombre" readonly>
+                                        </td>
+                                        <td style="width:30%"><input type="text" class="form-control form-control-sm"
+                                            style="width:100%" formControlName="participacion"><span></span></td>
+                                        <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                                    style="width:100%"></span></td>                                                    
+                                        <td style="width:10%"><span><input type="text" class="form-control form-control-sm"
+                                            style="width:100%" formControlName="horas"></span></td>
+                                        <td><button type="button" class="btn btn-primary" (click)="deleteRow(i, 'alumnos')">Eliminar</button></td>
+                                    </tr>
+                                </ng-container>                             
                             </tbody>
                         </table>
                     </div>
@@ -160,7 +170,7 @@
                 <input list="alumno_user_id" placeholder="Selecciona un usuario" class="form-control"
                     formControlName="alumnos" />
                 <datalist id="alumno_user_id">
-                    <option *ngFor="let opt of alumnos"
+                    <option *ngFor="let opt of alumn"
                         [value]="opt.id + ' - ' + opt.nombres + ' ' + opt.apellidoPaterno + ' ' + opt.apellidoMaterno">
                     </option>
                 </datalist>
