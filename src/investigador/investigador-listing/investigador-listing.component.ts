@@ -20,9 +20,9 @@ export class InvestigadorListingComponent implements OnInit {
   listAlumnos: any;
   listInvestigadores: any;
   usuarios: Array<any> = [];
-  alumn: Array<any> = [];
-  colab: Array<any> = [];
-  invest: Array<any> = [];
+  alumnos: Array<any> = [];
+  colaboradores: Array<any> = [];
+  investigadores: Array<any> = [];
   estadoLookup: Array<any> = [];
   decanatos: Array<any> = [];
   campoConocimiento: Array<any> = [];
@@ -33,7 +33,6 @@ export class InvestigadorListingComponent implements OnInit {
   tipoInvestigacion: Array<any> = [];
   grado: Array<any> = [];
   fuenteFinanciamientos: Array<any> = [];
-  productoGenerado: Array<any> = [];
   proyectoForm!: FormGroup;
   userForm!: FormGroup;
   mode: string | undefined;
@@ -54,53 +53,124 @@ export class InvestigadorListingComponent implements OnInit {
     this.decanatos = [];
 
     this.proyectoForm = this.fb.group({
-      colaboradores: this.fb.array([]),
-      alumnos: this.fb.array([]),
-      investigadoresExternos: this.fb.array([])
+      idProyecto: ['', Validators.required],
+      titulo: ['', Validators.required],
+      fechaRegistro: ['', Validators.required],
+      decanatoId: ['', Validators.required],
+      departamentoId: ['', Validators.required],
+      facultadId: ['', Validators.required],
+      campoConocimientoId: ['', Validators.required],
+      categoriaInvestigacion: ['', Validators.required],
+      tipoInvestigacion: ['', Validators.required],
+      grado: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      objetivos: ['', Validators.required],
+      resultados: ['', Validators.required],
+      fuenteFinanciamiento: ['', Validators.required],
+      disciplinaId: ['', Validators.required],
+      subdisciplinaId: ['', Validators.required],
+      lineasInvestigacionId: ['', Validators.required],
+      estadoLookup: ['', Validators.required],
+      productoGenerado: ['', Validators.required],
+      beneficiario: ['', Validators.required],
+      fechaInicio: ['', Validators.required],
+      fechaTermino: ['', Validators.required],
+      duracionEstimada: ['', Validators.required]
     });
-
-    this.userForm = this.formBuilder.group({
-      colaboradores: [''],
-      alumnos: [''],
-      investigadores: ['']
-    });
   }
 
-  get colaboradores(): FormArray {
-    return this.proyectoForm.get('colaboradores') as FormArray;
-  }
 
-  get alumnos(): FormArray {
-    return this.proyectoForm.get('alumnos') as FormArray;
-  }
+  // participantes() : FormArray {
+  //   return this.userForm.get("quantities") as FormArray
+  // }
 
-  get investigadoresExternos(): FormArray {
-    return this.proyectoForm.get('investigadoresExternos') as FormArray;
-  }
-  
+  /*   newParticipante(): FormGroup {
+      return this.fb.group({
+        nomina: '', 
+        nombre: '',
+        participacion: '',
+        horas: ''      
+      })
+    } */
+
+  // addParticipante(){
+  //   this.participantes().push(this.newParticipante());
+  // }
+
+  // removeParticipante(i:number) {
+  //   this.participantes().removeAt(i);
+  // }
+
+
+  /* onSubmit(action: string) {
+    let nomina: number;
+    let nombre;
+    let datos;
+    let ordenar_nombre;
+
+    // this.listData.push(this.userForm.value);
+
+    interface CamposTabla {
+      nomina: string;
+      nombre: string;
+    }
+
+    this.modalService.dismissAll();
+    // console.log(this.userForm.value.participantes);        
+    // nombre = this.userForm.value.participantes;    
+    // nombre.toString();
+    // const myArray = nombre.split("-");    
+    // this.listData.push(myArray[0]);
+    // this.listData.push(myArray[1]);        
+
+    console.log(this.listData);
+
+    if (action === 'colaborador') {
+      datos = this.userForm.value.colaboradores;
+      datos.toString();
+      const myArray = datos.split(" - ");
+      nombre = myArray[1];
+      const splitNombre = nombre.split(" ");
+      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+
+      const obj1: CamposTabla = {
+        nomina: myArray[0],
+        nombre: ordenar_nombre.toUpperCase()
+      };
+      this.listData.push(obj1);
+    } else if (action === 'alumno') {
+      datos = this.userForm.value.alumnos;
+      datos.toString();
+      const myArray = datos.split(" - ");
+      nombre = myArray[1];
+      const splitNombre = nombre.split(" ");
+      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+
+      const obj1: CamposTabla = {
+        nomina: myArray[0],
+        nombre: ordenar_nombre.toUpperCase()
+      };
+      this.listData.push(obj1);
+    } else if (action === 'externos') {
+      datos = this.userForm.value.externos;
+      datos.toString();
+      const myArray = datos.split(" - ");
+      nombre = myArray[1];
+      const splitNombre = nombre.split(" ");
+      ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
+
+      const obj1: CamposTabla = {
+        nomina: myArray[0],
+        nombre: ordenar_nombre.toUpperCase()
+      };
+      this.listData.push(obj1);
+    }
+
+    // console.log(ordenar_nombre);
+
+  } */
+
   onSubmit(userType: string) {
-
-    const colaboradorFormGroup = this.fb.group({
-      nomina: [''],
-      nombre: [''],
-      participacion: [''],
-      horas: ['']
-    });
-
-    const alumnoFormGroup = this.fb.group({
-      nomina: [''],
-      nombre: [''],
-      participacion: [''],
-      horas: ['']
-    });
-
-    const investigadorFormGroup = this.fb.group({
-      nomina: [''],
-      nombre: [''],
-      participacion: [''],
-      horas: ['']
-    });
-
     interface CamposTabla {
       nomina: string;
       nombre: string;
@@ -127,11 +197,6 @@ export class InvestigadorListingComponent implements OnInit {
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listColaboradores.push(obj1);
-        colaboradorFormGroup.get('nomina')?.setValue(obj1.nomina);
-        colaboradorFormGroup.get('nombre')?.setValue(obj1.nombre);
-        console.log('Valor de nomina:', colaboradorFormGroup.get('nomina')?.value);
-        console.log('Valor de nombre:', colaboradorFormGroup.get('nombre')?.value);
-        (this.proyectoForm.get('colaboradores') as FormArray).push(colaboradorFormGroup);
         break;
 
       case 'alumno':
@@ -146,11 +211,6 @@ export class InvestigadorListingComponent implements OnInit {
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listAlumnos.push(obj2);
-        alumnoFormGroup.get('nomina')?.setValue(obj2.nomina);
-        alumnoFormGroup.get('nombre')?.setValue(obj2.nombre);
-        console.log('Valor de nomina:', alumnoFormGroup.get('nomina')?.value);
-        console.log('Valor de nombre:', alumnoFormGroup.get('nombre')?.value);
-        (this.proyectoForm.get('alumnos') as FormArray).push(alumnoFormGroup);
         break;
 
       case 'externo':
@@ -165,11 +225,6 @@ export class InvestigadorListingComponent implements OnInit {
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listInvestigadores.push(obj3);
-        investigadorFormGroup.get('nomina')?.setValue(obj3.nomina);
-        investigadorFormGroup.get('nombre')?.setValue(obj3.nombre);
-        console.log('Valor de nomina:', investigadorFormGroup.get('nomina')?.value);
-        console.log('Valor de nombre:', investigadorFormGroup.get('nombre')?.value);
-        (this.proyectoForm.get('investigadoresExternos') as FormArray).push(investigadorFormGroup);
         break;
 
       default:
@@ -178,17 +233,31 @@ export class InvestigadorListingComponent implements OnInit {
     }
 
   }
-
+  // payloadFields:Array<string> = this.getArrayOfFields();
 
   public addItem(): void {
-   
+    //this.listData.push(this.proyectoForm.value);
+    //this.proyectoForm.reset();
     console.log("Hola");
   }
   reset() {
     this.proyectoForm.reset();
   }
+  /*  removeItem(element: any) {
+     this.listData.forEach((value: any, index: any) => {
+       if (value == element) {
+         this.listData.splice(index, 1);
+       }
+     })
+   } */
 
   ngOnInit(): void {
+
+    this.userForm = this.formBuilder.group({
+      colaboradores: [''],
+      alumnos: [''],
+      investigadores: ['']
+    });
     var user = this.sessionService.getUserSession();
     if (user) {
       this.userName = user.nombres + " " + user.apellidoPaterno + user.apellidoMaterno;
@@ -215,28 +284,25 @@ export class InvestigadorListingComponent implements OnInit {
       this.estadoLookup = data as Array<any>;
       //console.log("Estado Proyecto: ", this.estadoLookup)
     });
-    this.lookupService.lookUpCategoriaInvestigacion().subscribe(data => {
-      this.categoriaInvestigacion = data as Array<any>;
-    })
     /*this.adminService.fetchAllUsers().then(data =>{
       this.usuarios = data as Array<any>;
       console.log("Usuarios: ",this.usuarios);
     })*/
     this.adminService.fetchAllColaboradores().then(data => {
-      this.colab = data as Array<any>;
-      this.colab.forEach(colaborador => {
+      this.colaboradores = data as Array<any>;
+      this.colaboradores.forEach(colaborador => {
         console.log("Colaboradores: " + `ID: ${colaborador.id}, Nombre: ${colaborador.nombres} ${colaborador.apellidoPaterno} ${colaborador.apellidoMaterno}`);
       });
     })
     this.adminService.fetchAllInvestigadores().then(data => {
-      this.invest = data as Array<any>;
-      this.invest.forEach(investigador => {
+      this.investigadores = data as Array<any>;
+      this.investigadores.forEach(investigador => {
         console.log("Investigadores: " + `ID: ${investigador.id}, Nombre: ${investigador.nombres} ${investigador.apellidoPaterno} ${investigador.apellidoMaterno}`);
       });
     })
     this.adminService.fetchAllStudents().then(data => {
-      this.alumn = data as Array<any>;
-      this.alumn.forEach(alumno => {
+      this.alumnos = data as Array<any>;
+      this.alumnos.forEach(alumno => {
         console.log("Alumnos: " + `ID: ${alumno.id}, Nombre: ${alumno.nombres} ${alumno.apellidoPaterno} ${alumno.apellidoMaterno}`);
       });
     })
@@ -362,7 +428,21 @@ export class InvestigadorListingComponent implements OnInit {
     })
   }
   addUser(): void {
+    // let id : number;
+    // let userId: string;
+    // let nombre: string;
+    // let titulo: string;
+    // let usuario: string;
+    // id = this.userForm.value.userId;
+
+    // // this.adminService.getUserById(id).subscribe((res:any) =>{        
+    // // console.log(res);    
+    // //   this.listData.push(res);   
+    // //   console.log(this.listData);
+    // // });
     console.log(JSON.stringify(this.proyectoForm.value));
+    // this.listData.push(this.userForm.value);
+    // this.userForm.reset();
   }
 
   initFormGroupFromProyecto(proyectoId: number) {
@@ -375,6 +455,28 @@ export class InvestigadorListingComponent implements OnInit {
       });
     });
   }
+
+
+  // getArrayOfFields():Array<string> {
+  //   return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','decanatoId','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
+  // }
+
+  // initEmptyFormGroup() {
+  //   let fcArray:any = {};
+  //   for (let _key of this.payloadFields) {
+  //     var fc;
+  //     if (_key == 'email')
+  //       fc = new FormControl('',[Validators.required, Validators.email]);
+  //     else if (_key == 'comentarios')
+  //       fc = new FormControl('');
+  //     else if (_key == 'roles') 
+  //       fc = new FormControl([], Validators.required)
+  //     else
+  //       fc = new FormControl('',Validators.required);
+  //     fcArray[_key] = fc;
+  //   }
+  //   this.proyectoForm = new FormGroup(fcArray);
+  // }
 
 
   submitForm() {
@@ -408,25 +510,17 @@ export class InvestigadorListingComponent implements OnInit {
   deleteRow(index: number, listName: string): void {
     switch (listName) {
       case 'colaboradores':
-        const colaboradoresArray = this.proyectoForm.get('colaboradores') as FormArray;
-        colaboradoresArray.removeAt(index);
+        this.listColaboradores.splice(index, 1);
         break;
       case 'alumnos':
-        const alumnosArray = this.proyectoForm.get('alumnos') as FormArray;
-        alumnosArray.removeAt(index);        
+        this.listAlumnos.splice(index, 1);
         break;
       case 'investigadores':
-        const investigadoresArray = this.proyectoForm.get('investigadoresExternos') as FormArray;
-        investigadoresArray.removeAt(index);      
+        this.listInvestigadores.splice(index, 1);
         break;
       default:
         console.error('Lista no encontrada');
     }
   }
 
-  registrarProyecto() {
-    // Aquí capturas los datos del formulario y los muestras en la consola
-    console.log('Datos del Formulario:', this.proyectoForm.value);
-  }
 }
-
