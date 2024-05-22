@@ -453,13 +453,15 @@
                 <hr style="width:100%">
                 <div class="container">
                     <div class="row justify-content-md-center">
-                        <div class="col col-lg-2">
+                        <!-- <div class="col col-lg-2">
                             <img class="button" src="assets/img/button-guardar.png" width="200px" (click)="addUser()" />
-                        </div>
+                        </div> -->
                         <div class="col-md-auto">
                         </div>
-                        <div class="col col-lg-2">
-                            <img class="button" src="assets/img/button-registrar.png" width="200px" />
+                        <div class="col col-lg-2">                            
+                            <button type="submit" style="border: none; background: none;">
+                                <img src="assets/img/button-registrar.png" alt="Registrar" width="200px">
+                              </button>                   
                         </div>
                     </div>
                 </div>
@@ -469,7 +471,7 @@
             </div>
         </form>
     </div>
-    <ng-template #colaboradormodal let-modal>
+        <ng-template #colaboradormodal let-modal>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title"> </h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.close()">

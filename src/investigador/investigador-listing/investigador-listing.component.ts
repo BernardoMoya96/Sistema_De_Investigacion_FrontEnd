@@ -46,6 +46,11 @@ export class InvestigadorListingComponent implements OnInit {
 
   constructor(private sessionService: SessionService, private adminService: AdminService, private proyectoService: InvestigadorService, private lookupService: LookupService,
     private confirmationModal: AppModalService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private modalService: NgbModal, private formBuilder: FormBuilder) {
+      this.listColaboradores = [];
+      this.listAlumnos = [];
+      this.listInvestigadores = [];
+      this.estadoLookup = [];
+      this.decanatos = [];
       this.listData = [];       
       this.estadoLookup = [];    
       this.decanatos = [];       
