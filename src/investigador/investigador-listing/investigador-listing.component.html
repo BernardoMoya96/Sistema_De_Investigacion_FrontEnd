@@ -120,11 +120,12 @@
                 <div class="form-group row">
                     <label for="lineas_investigacion" class="col-sm-3 col-form-label">Líneas de Investigación:</label>
                     <div class="col-sm-8">
-                        <!-- <select id="lineas_investigacion" class="form-control" formControlName="lineasInvestigacion" >
+                        <select id="lineasInvestigacionId" class="form-control" formControlName="lineasInvestigacionId">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
-                            <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}</option>
+                            <option *ngFor="let opt of lineasInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['estadoLookupEstadoCodigo'].errors"><span *ngIf="$fb['estadoLookupEstadoCodigo'].errors.required">* Requerido</span></mat-hint> -->
+                        <mat-hint *ngIf="$fb['lineasInvestigacionId'].errors"><span
+                                *ngIf="$fb['lineasInvestigacionId'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -417,6 +418,18 @@
                     <div class="p-2">
                         <label for="estadoLookupEstadoCodigo" class="col">Producto Generado:</label>
                     </div>
+                      <!-- <div class="p-2">
+                        <label for="producto_generado" class="col">Producto Generado:</label>
+                    </div>
+                    <div class="p-2">
+                        <div class="col-sm-8">
+                            <select id="productoGenerado" class="form-control" formControlName="productoGenerado">
+                                <option value="">SELECCIONE UNA OPCIÓN...</option>
+                                <option *ngFor="let opt of productosGenerados" value="{{opt.key}}">{{opt.value}}</option>
+                            </select>
+                            <mat-hint *ngIf="$fb['productoGenerado'].errors"><span *ngIf="$fb['productoGenerado'].errors.required">* Requerido</span></mat-hint>
+                        </div>
+                    </div> -->
                     <div class="p-2">
                         <div class="col-sm-8">
                             <!-- <select id="estadoLookupEstadoCodigo" class="form-control" formControlName="estadoLookupEstadoCodigo" >
@@ -427,7 +440,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>    
             <div class="lineas_de_investigacion">
                 <hr style="width:100%">
                 <h5 class="subtitle text-center">Lineas de Investigación:</h5>
