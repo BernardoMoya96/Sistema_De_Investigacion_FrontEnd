@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppConfig } from '../app/app-config-props';
 
 import { Proyecto } from 'src/app/models/Proyecto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,14 @@ export class InvestigadorService {
   // baseURL: string = "http://localhost:9180/sirms/proyecto";
   constructor(private http: HttpClient) { }
 
-  public saveProyecto(proyecto:Proyecto) {
-    return this.http.post(this.baseURL+"/add", proyecto, {responseType: 'text'});
+  public saveProyecto(proyecto: any, imagen: File | null): Observable<any> {
+    const formData = new FormData();
+    formData.append('body', JSON.stringify(proyecto));
+    if (imagen) {
+      formData.append('imagen', imagen);
+  }
+
+    return this.http.post(`${this.baseURL}/add`, formData, { responseType: 'text' });
   }
 
   public updateProyecto(proyecto:Proyecto) {

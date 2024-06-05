@@ -1,6 +1,6 @@
 <div id="userDetailCard">
     <div class="container">
-        <form [formGroup]="proyectoForm" (ngSubmit)="registrarProyecto()">
+           <form [formGroup]="proyectoForm" (ngSubmit)="submitForm()">
             <div class="form-group row">
             </div>
             <nav class="navbar bg-white sticky-top">
@@ -11,6 +11,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
+                        <div class="form-group row">
+                            <label for="nombreArchivoImagen" class="col-sm-3 col-form-label">Nombre del Archivo de Imagen:</label>
+                            <div class="col-sm-8">
+                              <input type="text" formControlName="nombreArchivoImagen" class="form-control" id="nombreArchivoImagen" placeholder="Nombre del Archivo de Imagen">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="imagen" class="col-sm-3 col-form-label">Imagen:</label>
+                            <div class="col-sm-8">
+                              <input type="file" (change)="onImageSelected($event)" class="form-control" id="imagen">
+                            </div>
+                          </div>                    
                         <div class="form-group row">
                             <label for="id_proyecto" class="col-sm-3 col-form-label">ID proyecto:</label>
                             <div class="col-sm-8">
@@ -25,9 +37,9 @@
                         <div class="form-group row">
                             <label for="titulo_proyecto" class="col-sm-3 col-form-label">Titulo:</label>
                             <div class="col-sm-8">
-                                <input type="text" placeholder="Titulo Proyecto" class="form-control" id="titulo"
-                                    formControlName="titulo" />
-                                <mat-hint *ngIf="$fb['titulo'].errors"><span *ngIf="$fb['titulo'].errors.required">*
+                                <input type="text" placeholder="Titulo Proyecto" class="form-control" id="nombre"
+                                    formControlName="nombre" />
+                                <mat-hint *ngIf="$fb['nombre'].errors"><span *ngIf="$fb['nombre'].errors.required">*
                                         Requerido</span></mat-hint>
                             </div>
                         </div>
@@ -52,32 +64,32 @@
             <div class="adscripcion">
                 <h5 class="subtitle">Adscripción</h5>
                 <div class="form-group row">
-                    <label for="decanatoId" class="col-sm-3 col-form-label">Decanato:</label>
+                    <label for="idDecanato" class="col-sm-3 col-form-label">Decanato:</label>
                     <div class="col-sm-8">
-                        <select id="decanatoId" class="form-control" formControlName="decanatoId">
+                        <select id="idDecanato" class="form-control" formControlName="idDecanato">
                             <option value="">Selecciona Decanato</option>
                             <option *ngFor="let opt of decanatos" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['decanatoId'].errors"><span *ngIf="$fb['decanatoId'].errors.required">*
+                        <mat-hint *ngIf="$fb['idDecanato'].errors"><span *ngIf="$fb['idDecanato'].errors.required">*
                                 Requerido</span></mat-hint>
                     </div>
-                    <label for="facultadId" class="col-sm-3 col-form-label">Facultad:</label>
+                    <label for="idFacultad" class="col-sm-3 col-form-label">Facultad:</label>
                     <div class="col-sm-8">
-                        <select id="facultadId" class="form-control" formControlName="facultadId">
+                        <select id="idFacultad" class="form-control" formControlName="idFacultad">
                             <option value="">Selecciona Facultad</option>
                             <option *ngFor="let opt of facultades" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['facultadId'].errors"><span *ngIf="$fb['facultadId'].errors.required">*
+                        <mat-hint *ngIf="$fb['idFacultad'].errors"><span *ngIf="$fb['idFacultad'].errors.required">*
                                 Requerido</span></mat-hint>
                     </div>
-                    <label for="departamentoId" class="col-sm-3 col-form-label">Departamento:</label>
+                    <label for="idDepartamento" class="col-sm-3 col-form-label">Departamento:</label>
                     <div class="col-sm-8">
-                        <select id="departamentoId" class="form-control" formControlName="departamentoId">
+                        <select id="idDepartamento" class="form-control" formControlName="idDepartamento">
                             <option value="">Selecciona Departamento</option>
                             <option *ngFor="let opt of departamentos" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['departamentoId'].errors"><span
-                                *ngIf="$fb['departamentoId'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idDepartamento'].errors"><span
+                                *ngIf="$fb['idDepartamento'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
             </div>
@@ -87,59 +99,60 @@
                 <div class="form-group row">
                     <label for="campo_conocimiento" class="col-sm-3 col-form-label">Campo del Conocimiento:</label>
                     <div class="col-sm-8">
-                        <select id="campoConocimientoId" class="form-control" formControlName="campoConocimientoId">
+                        <select id="idCampoConocimiento" class="form-control" formControlName="idCampoConocimiento">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of campoConocimiento" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['campoConocimientoId'].errors"><span
-                                *ngIf="$fb['campoConocimientoId'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idCampoConocimiento'].errors"><span
+                                *ngIf="$fb['idCampoConocimiento'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="disciplina" class="col-sm-3 col-form-label">Disciplina:</label>
                     <div class="col-sm-8">
-                        <select id="disciplinaId" class="form-control" formControlName="disciplinaId">
+                        <select id="idDisciplina" class="form-control" formControlName="idDisciplina">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of disciplinas" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['disciplinaId'].errors"><span *ngIf="$fb['disciplinaId'].errors.required">*
+
+                        <mat-hint *ngIf="$fb['idDisciplina'].errors"><span *ngIf="$fb['idDisciplina'].errors.required">*
                                 Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="subdisciplinas" class="col-sm-3 col-form-label">Subdisciplina:</label>
                     <div class="col-sm-8">
-                        <select id="subdisciplinaId" class="form-control" formControlName="subdisciplinaId">
+                        <select id="idSubdisciplina" class="form-control" formControlName="idSubdisciplina">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of subdisciplinas" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['subdisciplinaId'].errors"><span
-                                *ngIf="$fb['subdisciplinaId'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idSubdisciplina'].errors"><span
+                                *ngIf="$fb['idSubdisciplina'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lineas_investigacion" class="col-sm-3 col-form-label">Líneas de Investigación:</label>
                     <div class="col-sm-8">
-                        <select id="lineasInvestigacionId" class="form-control" formControlName="lineasInvestigacionId">
+                        <select id="idLineaInvestigacion" class="form-control" formControlName="idLineaInvestigacion">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of lineasInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['lineasInvestigacionId'].errors"><span
-                                *ngIf="$fb['lineasInvestigacionId'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idLineaInvestigacion'].errors"><span
+                                *ngIf="$fb['idLineaInvestigacion'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="categoria_investigacion" class="col-sm-3 col-form-label">Categoría de
                         Investigación:</label>
                     <div class="col-sm-8">
-                        <select id="categoriaInvestigacion" class="form-control"
-                            formControlName="categoriaInvestigacion">
+                        <select id="idCategoriaInvestigacion" class="form-control"
+                            formControlName="idCategoriaInvestigacion">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of categoriaInvestigacion" value="{{opt.key}}">{{opt.value}}
                             </option>
                         </select>
-                        <mat-hint *ngIf="$fb['categoriaInvestigacion'].errors"><span
-                                *ngIf="$fb['categoriaInvestigacion'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idCategoriaInvestigacion'].errors"><span
+                                *ngIf="$fb['idCategoriaInvestigacion'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -154,13 +167,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="grado" class="col-sm-3 col-form-label">Grado:</label>
+                    <label for="idGrado" class="col-sm-3 col-form-label">Grado:</label>
                     <div class="col-sm-8">
-                        <select id="grado" class="form-control" formControlName="grado">
+                        <select id="idGrado" class="form-control" formControlName="idGrado">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of grado" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['grado'].errors"><span *ngIf="$fb['grado'].errors.required">*
+                        <mat-hint *ngIf="$fb['idGrado'].errors"><span *ngIf="$fb['idGrado'].errors.required">*
                                 Requerido</span></mat-hint>
                     </div>
                 </div>
@@ -169,10 +182,10 @@
             <div class="contenido">
                 <h5 class="subtitle">Contenido</h5>
                 <div class="form-group row">
-                    <label for="descripcion" class="col-sm-3 col-form-label">Descripción del Problema:</label>
+                    <label for="descripcionProblema" class="col-sm-3 col-form-label">Descripción del Problema:</label>
                     <div class="col-sm-8">
-                        <textarea id="descripcion" placeholder="Descripción del Problema" class="form-control"
-                            formControlName="descripcion" rows="8" style="min-width: 100%"></textarea>
+                        <textarea id="descripcionProblema" placeholder="Descripción del Problema" class="form-control"
+                            formControlName="descripcionProblema" rows="8" style="min-width: 100%"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -212,7 +225,7 @@
             </div>
             <div class="participantes">
                 <hr style="width:100%">
-                <h5 class="subtitle">Participantes:</h5>
+                <label class="col-sm-3 col-form-label">Participantes del Proyecto:</label>
                 <div class="form-group row">                    
                 <br>
                     <label for="colaboradores" class="col-sm-3 col-form-label">
@@ -357,9 +370,9 @@
                                 <label for="titulo_proyecto" class="col-sm-3 col-form-label">Fecha de Término:</label>
                                 <div class="col-sm-8">
                                     <input type="date" placeholder="Fecha de término" class="form-control"
-                                        id="fecha_termino" formControlName="fechaTermino" />
-                                    <mat-hint *ngIf="$fb['fechaTermino'].errors"><span
-                                            *ngIf="$fb['fechaTermino'].errors.required">* Requerido</span></mat-hint>
+                                        id="fecha_termino" formControlName="fechaFin" />
+                                    <mat-hint *ngIf="$fb['fechaFin'].errors"><span
+                                            *ngIf="$fb['fechaFin'].errors.required">* Requerido</span></mat-hint>
                                 </div>
                             </div>
                         </div>
@@ -382,13 +395,13 @@
                                 <label for="estadoLookupEstadoCodigo" class="col-sm-3 col-form-label">Estatus:</label>
                                 <div class="col-sm-8">
                                     <select id="estadoLookupEstadoCodigo" class="form-control"
-                                        formControlName="estadoLookup">
+                                        formControlName="estadoCodigo">
                                         <option value="">SELECCIONE UNA OPCIÓN...</option>
                                         <option *ngFor="let opt of estadoLookup" value="{{opt.key}}">{{opt.value}}
                                         </option>
                                     </select>
-                                    <mat-hint *ngIf="$fb['estadoLookup'].errors"><span
-                                            *ngIf="$fb['estadoLookup'].errors.required">* Requerido</span></mat-hint>
+                                    <mat-hint *ngIf="$fb['estadoCodigo'].errors"><span
+                                            *ngIf="$fb['estadoCodigo'].errors.required">* Requerido</span></mat-hint>
                                 </div>
                             </div>
                         </div>

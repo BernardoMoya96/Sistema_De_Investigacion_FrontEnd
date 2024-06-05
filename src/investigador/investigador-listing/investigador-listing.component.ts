@@ -7,6 +7,7 @@ import { AppModalService } from 'src/app/modals/app-modal.service';
 import { InvestigadorService } from '../investigador.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { SessionService } from 'src/app/security/session.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-investigador-listing',
@@ -42,10 +43,11 @@ export class InvestigadorListingComponent implements OnInit {
   departamentos: Array<any>  = [];
   fuenteFinanciamientos: Array<any> = [];
   userName: string = "";
+  selectedImage: File | null = null;
     
 
   constructor(private sessionService: SessionService, private adminService: AdminService, private proyectoService: InvestigadorService, private lookupService: LookupService,
-    private confirmationModal: AppModalService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private modalService: NgbModal, private formBuilder: FormBuilder) {
+    private confirmationModal: AppModalService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private modalService: NgbModal, private formBuilder: FormBuilder, private http: HttpClient) {
       this.listColaboradores = [];
       this.listAlumnos = [];
       this.listInvestigadores = [];
@@ -57,31 +59,34 @@ export class InvestigadorListingComponent implements OnInit {
       // return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','decanatoId','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
       this.proyectoForm = this.fb.group({
         idProyecto: ['',Validators.required],
-        titulo: ['',Validators.required],
+        nombre: ['',Validators.required],
         fechaRegistro: ['',Validators.required],
-        decanatoId: ['',Validators.required],        
-        departamentoId: ['',Validators.required],        
-        facultadId: ['',Validators.required],        
-        campoConocimientoId: ['',Validators.required],
-        categoriaInvestigacion: ['',Validators.required],
+        idDecanato: ['',Validators.required],        
+        idDepartamento: ['',Validators.required],        
+        idFacultad: ['',Validators.required],        
+        idCampoConocimiento: ['',Validators.required],
+        idCategoriaInvestigacion: ['',Validators.required],
         tipoInvestigacion: ['',Validators.required],
-        grado: ['',Validators.required],        
-        descripcion: ['', Validators.required],
+        idGrado: ['',Validators.required],        
+        descripcionProblema: ['', Validators.required],
+        // resumen: ['', Validators.required],
         objetivos: ['', Validators.required],
         resultados: ['', Validators.required],
-        fuenteFinanciamiento: ['', Validators.required],
-        disciplinaId: ['',Validators.required],      
-        subdisciplinaId: ['',Validators.required],   
-        lineasInvestigacionId: ['', Validators.required],     
-        estadoLookup: ['',Validators.required],
+        // fuenteFinanciamiento: ['', Validators.required],
+        idDisciplina: ['',Validators.required],      
+        idSubdisciplina: ['',Validators.required],   
+        idLineaInvestigacion: ['', Validators.required],     
+        estadoCodigo: ['',Validators.required],
         productoGenerado: ['', Validators.required],
         beneficiario: ['',Validators.required],
         fechaInicio: ['',Validators.required],
-        fechaTermino: ['',Validators.required],
+        fechaFin: ['',Validators.required],
         duracionEstimada: ['',Validators.required],
         colaboradores: this.fb.array([]),
         alumnos: this.fb.array([]),
-        investigadoresExternos: this.fb.array([])        
+        investigadoresExternos: this.fb.array([]),        
+        imagen: [null],
+        nombreArchivoImagen: ['', Validators.required]  
       });
       this.userForm = this.formBuilder.group({
         colaboradores: [''],
@@ -274,6 +279,10 @@ export class InvestigadorListingComponent implements OnInit {
     this.suscribeToDropdownChanges();
   }
 
+  onImageSelected(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
+
   suscribeToDropdownChanges() {
     var decanatoDropdown = this.proyectoForm.get("decanatoId");
     decanatoDropdown?.valueChanges.subscribe(selectedDecanato => {
@@ -430,9 +439,16 @@ export class InvestigadorListingComponent implements OnInit {
       payload[key] = value;
     });
     if (this.mode == 'add') {
-      this.proyectoService.saveProyecto(payload).subscribe((res) => {
-        this.confirmationModal.ack("Operación Exitosa", res);
+      const formData = new FormData();
+      formData.append('body', JSON.stringify(this.proyectoForm.value));
+      if (this.selectedImage) {
+        formData.append('imagen', this.selectedImage);
+      }
+      this.proyectoService.saveProyecto(this.proyectoForm.value, this.selectedImage).subscribe(response => {
+        this.confirmationModal.ack("Operación Exitosa", response);
         this.router.navigate(['/investigador']);
+      }, error => {
+        console.error('Error al crear el proyecto', error);
       });
     } else {
       this.proyectoService.updateProyecto(payload).subscribe((res) => {
@@ -472,6 +488,9 @@ export class InvestigadorListingComponent implements OnInit {
 
   registrarProyecto() {
     // Aquí capturas los datos del formulario y los muestras en la consola
+    // if (this.proyectoForm.invalid) {
+    //   return;
+    // }
     console.log('Datos del Formulario:', this.proyectoForm.value);
   }
 }
