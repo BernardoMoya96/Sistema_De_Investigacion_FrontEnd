@@ -233,7 +233,7 @@
                     </label>
                     <div class="col-sm-8">
                         <img class="button" src="assets/img/button-agregar-colaborador.png" width="250px"
-                            (click)="open(colaboradormodal)" />
+                            (click)="open($event, colaboradormodal)" />
                     </div>
                     <div class="col-md-8 mt-4">
                         <table class="table table-borderless">
@@ -273,7 +273,7 @@
                     </label>
                     <div class="col-sm-8">
                         <img class="button" src="assets/img/button-agregar-alumno.png" width="200px"
-                            (click)="open(alumnomodal)" />
+                            (click)="open($event, alumnomodal)" />
                     </div>
                     <div class="col-md-8 mt-4">
                         <table class="table table-borderless">
@@ -306,15 +306,15 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div>                
                 <div class="form-group row">
                     <label for="externos-uag" class="col-sm-3 col-form-label">
                         <h5>Externos UAG:</h5>
                     </label>
                     <div class="col-sm-8">
-                        <button class="btn btn-xs btn-primary" (click)="open(externomodal)"><i
-                                style="padding-right: 25px;" class="fa fa-plus-circle" aria-hidden="true"></i>Agregar
-                            externos UAG</button>
+                        <button class="btn btn-xs btn-primary" (click)="open($event, externomodal)">
+                            <i style="padding-right: 25px;" class="fa fa-plus-circle" aria-hidden="true"></i>Agregar externos UAG
+                        </button>                                            
                     </div>
                     <div class="col-md-8 mt-4">
                         <table class="table table-borderless">
@@ -495,7 +495,7 @@
             </div>
             <div class="card">
             </div>
-        </form>
+           </form>
     </div>
         <ng-template #colaboradormodal let-modal>
         <div class="modal-header">

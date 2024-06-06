@@ -463,7 +463,8 @@ export class InvestigadorListingComponent implements OnInit {
   }
    
     
-  open(content:any) {
+  open(event: Event, content:any) {
+    event.preventDefault();
     this.modalService.open(content);    
   }     
 
@@ -493,4 +494,6 @@ export class InvestigadorListingComponent implements OnInit {
     // }
     console.log('Datos del Formulario:', this.proyectoForm.value);
   }
+
+  
 }
