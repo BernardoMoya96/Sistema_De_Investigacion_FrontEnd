@@ -11,18 +11,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="nombreArchivoImagen" class="col-sm-3 col-form-label">Nombre del Archivo de Imagen:</label>
                             <div class="col-sm-8">
                               <input type="text" formControlName="nombreArchivoImagen" class="form-control" id="nombreArchivoImagen" placeholder="Nombre del Archivo de Imagen">
                             </div>
-                          </div>
-                          <div class="form-group row">
+                          </div> -->
+                          <!-- <div class="form-group row">
                             <label for="imagen" class="col-sm-3 col-form-label">Imagen:</label>
                             <div class="col-sm-8">
                               <input type="file" (change)="onImageSelected($event)" class="form-control" id="imagen">
                             </div>
-                          </div>                    
+                          </div>                     -->
                         <div class="form-group row">
                             <label for="id_proyecto" class="col-sm-3 col-form-label">ID proyecto:</label>
                             <div class="col-sm-8">
@@ -156,14 +156,14 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tipo_investigacion" class="col-sm-3 col-form-label">Tipo de Investigación:</label>
+                    <label for="idTipoInvestigacion" class="col-sm-3 col-form-label">Tipo de Investigación:</label>
                     <div class="col-sm-8">
-                        <select id="tipo_investigacion" class="form-control" formControlName="tipoInvestigacion">
+                        <select id="idTipoInvestigacion" class="form-control" formControlName="idTipoInvestigacion">
                             <option value="">SELECCIONE UNA OPCIÓN...</option>
                             <option *ngFor="let opt of tipoInvestigacion" value="{{opt.key}}">{{opt.value}}</option>
                         </select>
-                        <mat-hint *ngIf="$fb['tipoInvestigacion'].errors"><span
-                                *ngIf="$fb['tipoInvestigacion'].errors.required">* Requerido</span></mat-hint>
+                        <mat-hint *ngIf="$fb['idTipoInvestigacion'].errors"><span
+                                *ngIf="$fb['idTipoInvestigacion'].errors.required">* Requerido</span></mat-hint>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -197,10 +197,10 @@
                 </div>
                 <div class="form-group row">
                     <label for="resultados" class="col-sm-3 col-form-label">Resultados:</label>
-                    <div class="col-sm-8">
+                   <!--  <div class="col-sm-8">
                         <textarea id="resultados" placeholder="Resultados" class="form-control"
                             formControlName="resultados" rows="5" style="min-width: 100%"></textarea>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group row">
                     <label for="fuente_financiamiento" class="col-sm-3 col-form-label">Fuente de financiamiento:
@@ -215,12 +215,12 @@
                 </div>
                 <div class="form-group row">
                     <label for="beneficiario" class="col-sm-3 col-form-label">Beneficiario y/o Usuario: </label>
-                    <div class="col-sm-8">
+                    <!-- <div class="col-sm-8">
                         <input id="beneficiario" placeholder="Beneficiario y/o Usuario" class="form-control"
                             formControlName="beneficiario" rows="5" style="min-width: 100%" />
                         <mat-hint *ngIf="$fb['beneficiario'].errors"><span *ngIf="$fb['beneficiario'].errors.required">*
                                 Requerido</span></mat-hint>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="participantes">
@@ -249,7 +249,7 @@
                                 <ng-container *ngFor="let colaboradorFormGroup of colaboradores.controls; let i = index" [formGroupName]="i">
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" formControlName="nomina" readonly>
+                                            <input type="text" class="form-control" formControlName="idUsuario" readonly>
                                         </td>
                                         <td style="width:40%">
                                             <input type="text" class="form-control" formControlName="nombre" readonly>
@@ -289,7 +289,7 @@
                                 <ng-container *ngFor="let alumnoFormGroup of alumnos.controls; let i = index" [formGroupName]="i">
                                     <tr>
                                         <td style="width:10%">
-                                            <input type="text" class="form-control" formControlName="nomina" readonly>
+                                            <input type="text" class="form-control" formControlName="idUsuario" readonly>
                                         </td>
                                         <td style="width:40%">
                                             <input type="text" class="form-control" formControlName="nombre" readonly>
@@ -330,7 +330,7 @@
                                 <ng-container *ngFor="let investigadorFormGroup of investigadoresExternos.controls; let i = index" [formGroupName]="i">
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" formControlName="nomina" readonly>
+                                            <input type="text" class="form-control" formControlName="idUsuario" readonly>
                                         </td>
                                         <td style="width:40%">
                                             <input type="text" class="form-control" formControlName="nombre" readonly>
@@ -381,13 +381,13 @@
                             <div class="form-group row">
                                 <label for="duracion_estimada" class="col-sm-3 col-form-label">Duración
                                     Estimada:</label>
-                                <div class="col-sm-8">
+                                <!-- <div class="col-sm-8">
                                     <input type="text" placeholder="Duración estimada" class="form-control"
                                         id="duracionEstimada" formControlName="duracionEstimada" />
                                     <mat-hint *ngIf="$fb['duracionEstimada'].errors"><span
                                             *ngIf="$fb['duracionEstimada'].errors.required">*
                                             Requerido</span></mat-hint>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col">

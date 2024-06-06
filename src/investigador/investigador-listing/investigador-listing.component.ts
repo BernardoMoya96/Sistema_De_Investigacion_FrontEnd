@@ -66,26 +66,26 @@ export class InvestigadorListingComponent implements OnInit {
         idFacultad: ['',Validators.required],        
         idCampoConocimiento: ['',Validators.required],
         idCategoriaInvestigacion: ['',Validators.required],
-        tipoInvestigacion: ['',Validators.required],
+        idTipoInvestigacion: ['',Validators.required],
         idGrado: ['',Validators.required],        
         descripcionProblema: ['', Validators.required],
         // resumen: ['', Validators.required],
         objetivos: ['', Validators.required],
-        resultados: ['', Validators.required],
+        // resultados: ['', Validators.required],
         // fuenteFinanciamiento: ['', Validators.required],
         idDisciplina: ['',Validators.required],      
         idSubdisciplina: ['',Validators.required],   
         idLineaInvestigacion: ['', Validators.required],     
         estadoCodigo: ['',Validators.required],
-        productoGenerado: ['', Validators.required],
-        beneficiario: ['',Validators.required],
+        // productoGenerado: ['', Validators.required],
+        // beneficiario: ['',Validators.required],
         fechaInicio: ['',Validators.required],
         fechaFin: ['',Validators.required],
-        duracionEstimada: ['',Validators.required],
+        // duracionEstimada: ['',Validators.required],
         colaboradores: this.fb.array([]),
         alumnos: this.fb.array([]),
         investigadoresExternos: this.fb.array([]),        
-        imagen: [null],
+        // imagen: [null],
         nombreArchivoImagen: ['', Validators.required]  
       });
       this.userForm = this.formBuilder.group({
@@ -111,28 +111,28 @@ export class InvestigadorListingComponent implements OnInit {
   onSubmit(userType: string) {
 
     const colaboradorFormGroup = this.fb.group({
-      nomina: [''],
+      idUsuario: [''],
       nombre: [''],
       participacion: [''],
       horas: ['']
     });
 
     const alumnoFormGroup = this.fb.group({
-      nomina: [''],
+      idUsuario: [''],
       nombre: [''],
       participacion: [''],
       horas: ['']
     });
 
     const investigadorFormGroup = this.fb.group({
-      nomina: [''],
+      idUsuario: [''],
       nombre: [''],
       participacion: [''],
       horas: ['']
     });
 
     interface CamposTabla {
-      nomina: string;
+      idUsuario: string;
       nombre: string;
     }
 
@@ -153,13 +153,13 @@ export class InvestigadorListingComponent implements OnInit {
         splitNombre = nombre.split(" ");
         ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
         const obj1: CamposTabla = {
-          nomina: myArray[0],
+          idUsuario: myArray[0],
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listColaboradores.push(obj1);
-        colaboradorFormGroup.get('nomina')?.setValue(obj1.nomina);
+        colaboradorFormGroup.get('idUsuario')?.setValue(obj1.idUsuario);
         colaboradorFormGroup.get('nombre')?.setValue(obj1.nombre);
-        console.log('Valor de nomina:', colaboradorFormGroup.get('nomina')?.value);
+        console.log('Valor de nomina:', colaboradorFormGroup.get('idUsuario')?.value);
         console.log('Valor de nombre:', colaboradorFormGroup.get('nombre')?.value);
         (this.proyectoForm.get('colaboradores') as FormArray).push(colaboradorFormGroup);
         break;
@@ -172,13 +172,13 @@ export class InvestigadorListingComponent implements OnInit {
         splitNombre = nombre.split(" ");
         ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
         const obj2: CamposTabla = {
-          nomina: myArray[0],
+          idUsuario: myArray[0],
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listAlumnos.push(obj2);
-        alumnoFormGroup.get('nomina')?.setValue(obj2.nomina);
+        alumnoFormGroup.get('idUsuario')?.setValue(obj2.idUsuario);
         alumnoFormGroup.get('nombre')?.setValue(obj2.nombre);
-        console.log('Valor de nomina:', alumnoFormGroup.get('nomina')?.value);
+        console.log('Valor de nomina:', alumnoFormGroup.get('idUsuario')?.value);
         console.log('Valor de nombre:', alumnoFormGroup.get('nombre')?.value);
         (this.proyectoForm.get('alumnos') as FormArray).push(alumnoFormGroup);
         break;
@@ -191,13 +191,13 @@ export class InvestigadorListingComponent implements OnInit {
         splitNombre = nombre.split(" ");
         ordenar_nombre = splitNombre[1] + " " + splitNombre[2] + ", " + splitNombre[0];
         const obj3: CamposTabla = {
-          nomina: myArray[0],
+          idUsuario: myArray[0],
           nombre: ordenar_nombre.toUpperCase()
         };
         this.listInvestigadores.push(obj3);
-        investigadorFormGroup.get('nomina')?.setValue(obj3.nomina);
+        investigadorFormGroup.get('idUsuario')?.setValue(obj3.idUsuario);
         investigadorFormGroup.get('nombre')?.setValue(obj3.nombre);
-        console.log('Valor de nomina:', investigadorFormGroup.get('nomina')?.value);
+        console.log('Valor de nomina:', investigadorFormGroup.get('idUsuario')?.value);
         console.log('Valor de nombre:', investigadorFormGroup.get('nombre')?.value);
         (this.proyectoForm.get('investigadoresExternos') as FormArray).push(investigadorFormGroup);
         break;
