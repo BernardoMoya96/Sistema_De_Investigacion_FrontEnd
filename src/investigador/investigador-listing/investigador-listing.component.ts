@@ -56,7 +56,7 @@ export class InvestigadorListingComponent implements OnInit {
       this.listData = [];       
       this.estadoLookup = [];    
       this.decanatos = [];       
-      // return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','decanatoId','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
+      // return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','idDecanato','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
       this.proyectoForm = this.fb.group({
         idProyecto: ['',Validators.required],
         nombre: ['',Validators.required],
@@ -284,26 +284,26 @@ export class InvestigadorListingComponent implements OnInit {
   }
 
   suscribeToDropdownChanges() {
-    var decanatoDropdown = this.proyectoForm.get("decanatoId");
+    var decanatoDropdown = this.proyectoForm.get("idDecanato");
     decanatoDropdown?.valueChanges.subscribe(selectedDecanato => {
       this.getFacultades(selectedDecanato);
-      this.proyectoForm.get("departamentoId")?.setValue("");
+      this.proyectoForm.get("idDepartamento")?.setValue("");
     });
-    var facultadDropdown = this.proyectoForm.get("facultadId");
+    var facultadDropdown = this.proyectoForm.get("idFacultad");
     facultadDropdown?.valueChanges.subscribe(selectedFacultad => {
       this.getDepartamentos(selectedFacultad);
     });
 
-    var campoConocimientoDropdown = this.proyectoForm.get("campoConocimientoId");
+    var campoConocimientoDropdown = this.proyectoForm.get("idCampoConocimiento");
     campoConocimientoDropdown?.valueChanges.subscribe(selectedCampoConocimiento => {
       this.getDisciplinas(selectedCampoConocimiento);
-      //this.proyectoForm.get("subdisciplinaId")?.setValue("");
+      //this.proyectoForm.get("idSubdisciplina")?.setValue("");
     });
-    var disciplinaDropdown = this.proyectoForm.get("disciplinaId");
+    var disciplinaDropdown = this.proyectoForm.get("idDisciplina");
     disciplinaDropdown?.valueChanges.subscribe(selectedDisciplina => {
       this.getSubdisciplinas(selectedDisciplina);
     })
-    var subdisciplinaDropdown = this.proyectoForm.get("subdisciplinaId");
+    var subdisciplinaDropdown = this.proyectoForm.get("idSubdisciplina");
     subdisciplinaDropdown?.valueChanges.subscribe(selectedSubdisciplina => {
       this.getLineasInvestigacion(selectedSubdisciplina);
     });
@@ -313,7 +313,7 @@ export class InvestigadorListingComponent implements OnInit {
     this.lookupService.lookupDepartamentos(selectedFacultad).subscribe(data => {
       this.departamentos = data as Array<any>;
       console.log("departamentos", this.departamentos)
-      var ctrl = this.proyectoForm.get("departamentoId");
+      var ctrl = this.proyectoForm.get("idDepartamento");
       if (this.departamentos.length == 0) {
         ctrl?.setValidators(null);
         ctrl?.setErrors(null);
@@ -321,18 +321,18 @@ export class InvestigadorListingComponent implements OnInit {
         ctrl?.setValidators(Validators.required);
         ctrl?.setErrors({ required: true });
       }
-      console.log("control departamento", this.proyectoForm.get("departamentoId"))
+      console.log("control departamento", this.proyectoForm.get("idDepartamento"))
     })
   }
-  getFacultades(decanatoId: number) {
-    this.lookupService.lookupFacultad(decanatoId).subscribe(data => {
+  getFacultades(idDecanato: number) {
+    this.lookupService.lookupFacultad(idDecanato).subscribe(data => {
       this.facultades = data as Array<any>;
       console.log("facultades", this.facultades)
-      var ctrl = this.proyectoForm.get("facultadId");
+      var ctrl = this.proyectoForm.get("idFacultad");
       if (this.facultades.length == 0) {
         ctrl?.setValidators(null);
         ctrl?.setErrors(null);
-        var dpto = this.proyectoForm.get("departamentoId");
+        var dpto = this.proyectoForm.get("idDepartamento");
         dpto?.setValidators(null);
         dpto?.setErrors(null);
         dpto?.setValue("");
@@ -343,14 +343,14 @@ export class InvestigadorListingComponent implements OnInit {
     })
   }
 
-  getDisciplinas(campoConocimientoId: number) {
-    this.lookupService.lookupDiciplinaDeCampo(campoConocimientoId).subscribe(data => {
+  getDisciplinas(idCampoConocimiento: number) {
+    this.lookupService.lookupDiciplinaDeCampo(idCampoConocimiento).subscribe(data => {
       this.disciplinas = data as Array<any>;
-      var ctrl = this.proyectoForm.get("disciplinaId");
+      var ctrl = this.proyectoForm.get("idDisciplina");
       if (this.disciplinas.length == 0) {
         ctrl?.setValidators(null);
         ctrl?.setErrors(null);
-        var sub = this.proyectoForm.get("subdisciplinaId");
+        var sub = this.proyectoForm.get("idSubdisciplina");
         sub?.setValidators(null);
         sub?.setErrors(null);
         sub?.setValue("");
@@ -361,14 +361,14 @@ export class InvestigadorListingComponent implements OnInit {
     })
   }
 
-  getSubdisciplinas(disciplinaId: number) {
-    this.lookupService.lookupSubDisciplinaDeDisciplina(disciplinaId).subscribe(data => {
+  getSubdisciplinas(idDisciplina: number) {
+    this.lookupService.lookupSubDisciplinaDeDisciplina(idDisciplina).subscribe(data => {
       this.subdisciplinas = data as Array<any>;
-      var ctrl = this.proyectoForm.get("subdisciplinaId");
+      var ctrl = this.proyectoForm.get("idSubdisciplina");
       if (this.subdisciplinas.length == 0) {
         ctrl?.setValidators(null);
         ctrl?.setErrors(null);
-        var sub = this.proyectoForm.get("lineasInvestigacionId");
+        var sub = this.proyectoForm.get("idLineaInvestigacion");
         sub?.setValidators(null);
         sub?.setErrors(null);
         sub?.setValue("");
@@ -380,10 +380,10 @@ export class InvestigadorListingComponent implements OnInit {
   }
 
 
-  getLineasInvestigacion(subdisciplinaId: number) {
-    this.lookupService.lookupLineaInvestigacion(subdisciplinaId).subscribe(data => {
+  getLineasInvestigacion(idSubdisciplina: number) {
+    this.lookupService.lookupLineaInvestigacion(idSubdisciplina).subscribe(data => {
       this.lineasInvestigacion = data as Array<any>;
-      var ctrl = this.proyectoForm.get("lineasInvestigacionId");
+      var ctrl = this.proyectoForm.get("idLineaInvestigacion");
       if (this.lineasInvestigacion.length == 0) {
         ctrl?.setValidators(null);
         ctrl?.setErrors(null);
@@ -411,7 +411,7 @@ export class InvestigadorListingComponent implements OnInit {
 
 
   // getArrayOfFields():Array<string> {
-  //   return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','decanatoId','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
+  //   return ['nombre','titulo','fechaRegistro','fechaInicio','fechaFin','resumen','idDecanato','userId','objetivos','programaIdPrograma','estadoLookupEstadoCodigo'];
   // }
 
   // initEmptyFormGroup() {
